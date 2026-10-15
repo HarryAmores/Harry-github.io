@@ -674,6 +674,38 @@
   #itemsTable td,#recentTable td,#onsiteTable td,#balTable td{padding:8px 10px;font-size:.85rem}
  }
 
+ /* ==========================================================================
+    Module forms on the web and on phones.
+    Material Input, On-site Inventory and Balance Search keep their markup and
+    behaviour; these rules only make the three entry screens comfortable at
+    both ends of the width range:
+    - the global width:100% must not hit the IN/OUT radios (it pushed the text
+      of each radio's own <label> onto a second line on every width),
+    - the mode choice becomes one wrapping row of 44px tap targets,
+    - Submit / Reset stay side by side while there is room and stack to two
+      full-width rows on a narrow phone, like the dashboard's own actions,
+    - the Balance Search button sits on the input's baseline on the web and
+      becomes a full-width action under the field on a phone.
+    Tables keep the documented .scroll-x horizontal scrolling at every width.
+    ========================================================================== */
+ input[type="radio"]{width:auto}
+ .mode-row{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-top:10px}
+ .mode-choice{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0;
+  padding:0 4px;color:var(--ink-2);cursor:pointer;user-select:none}
+ .mode-choice input{width:auto;min-height:0;accent-color:#3b82f6;cursor:pointer}
+ .mode-choice input:disabled{cursor:not-allowed}
+ .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+ @media(max-width:480px){
+  .form-actions{grid-template-columns:1fr}
+ }
+ .bal-search-row{display:flex;gap:10px;align-items:flex-end;margin-top:8px}
+ .bal-search-field{flex:1 1 auto;min-width:0}
+ .bal-search-action .btn{min-width:130px}
+ @media(max-width:768px){
+  .bal-search-row{flex-direction:column;align-items:stretch;gap:8px}
+  .bal-search-action .btn{width:100%}
+ }
+
  /* "Inventory by Material Type" rows drill into the existing Balance Search,
     so they advertise themselves as clickable (the fill already brightens). */
  #chartMaterialType .hbar-row{cursor:pointer}
@@ -1295,7 +1327,7 @@
    <div class="login-card" id="loginCard">
     <img class="login-card-icon" src="favicon-192.png" alt="Construction Inventory icon" />
     <h2 class="login-welcome">Welcome Back</h2>
-    <p class="login-sub">Sign in to continue to Construction Inventory</p>
+    <p class="login-sub">Sign in to continue</p>
 
     <label for="loginUser">Username</label>
     <input id="loginUser" type="text" autocomplete="username" placeholder="Enter your username" />
@@ -1313,7 +1345,7 @@
 
     <button id="btnLogin" class="btn login-btn" type="button">Login</button>
     <div id="loginMsg" class="help"></div>
-    <div class="login-footer">&copy; 2026 Construction Inventory &middot; Site materials, stock and schedules in one place.</div>
+    <div class="login-footer">&copy; 2026 Construction Inventory &middot; Site materials, stock and schedules in one place. Created by PHA</div>
    </div>
   </div>
  </div>
@@ -1711,7 +1743,7 @@
     </tr></thead><tbody></tbody></table>
    </div>
    <div style="margin:10px 0"><button type="button" class="btn secondary" id="addRowBtn">+ Add another material</button></div>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><button type="submit" class="btn">Submit</button><button type="reset" class="btn secondary">Reset</button></div>
+   <div class="form-actions"><button type="submit" class="btn">Submit</button><button type="reset" class="btn secondary">Reset</button></div>
    <div id="formMsg" class="help" style="margin-top:8px"></div>
   </form>
 
@@ -1744,9 +1776,9 @@
     <div><label>Doc Type *</label><select id="docTypeField"><option value="">Select Doc Type…</option><option value="STS">STS</option><option value="RR">RR</option><option value="Goods Issue">Goods Issue</option></select><div class="help" id="docTypeHelp"></div></div>
     <div><label>Document Number *</label><input type="text" id="docNumber" placeholder="DOC-0001" /></div>
    </div>
-   <div style="display:flex;gap:10px;align-items:center;margin-top:10px"><div class="help" id="modeNote">Mode:</div>
-    <label><input type="radio" name="modeIO" value="IN" checked> IN (Receive)</label>
-    <label><input type="radio" name="modeIO" value="OUT"> OUT (Dispatch)</label>
+   <div class="mode-row"><div class="help" id="modeNote">Mode:</div>
+    <label class="mode-choice"><input type="radio" name="modeIO" value="IN" checked> IN (Receive)</label>
+    <label class="mode-choice"><input type="radio" name="modeIO" value="OUT"> OUT (Dispatch)</label>
    </div>
    <div id="recallOnsiteMsg" class="help" style="margin:10px 0"></div>
    <div class="scroll-x" style="margin-top:8px">
@@ -1761,7 +1793,7 @@
     </tr></thead><tbody></tbody></table>
    </div>
    <div style="margin:10px 0"><button type="button" class="btn secondary" id="addOnsiteRowBtn">+ Add item</button></div>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><button type="submit" class="btn">Submit</button><button type="reset" class="btn secondary">Reset</button></div>
+   <div class="form-actions"><button type="submit" class="btn">Submit</button><button type="reset" class="btn secondary">Reset</button></div>
    <div id="onsiteMsg" class="help" style="margin-top:8px"></div>
   </form>
  </section>
@@ -1771,16 +1803,16 @@
   <div class="card">
    <h2 style="margin-top:0">🔍 Balance Search</h2>
    <div class="help">Search by Description across all sites with automatic suggestions.</div>
-   <div class="grid" style="grid-template-columns:1fr auto;align-items:end;gap:10px;margin-top:8px">
-    <div>
-     <label>Description</label>
+   <div class="bal-search-row">
+    <div class="bal-search-field">
+     <label for="balDesc">Description</label>
      <input id="balDesc" type="text" placeholder="TYPE TO SEARCH" />
-     <div class="help" style="margin-top:4px">Type to see suggestions, press Enter or click to search</div>
     </div>
-    <div>
+    <div class="bal-search-action">
      <button class="btn" id="btnBalSearch" type="button">Search</button>
     </div>
    </div>
+   <div class="help" style="margin-top:4px">Type to see suggestions, press Enter or click to search</div>
    <div id="balMsg" class="help" style="margin-top:8px"></div>
    <div class="scroll-x" style="margin-top:10px">
     <table id="balTable"><thead><tr>
@@ -3151,9 +3183,13 @@ function isAdmin() {
 // -------------------------------------------------------------- access roles ---
 // Three roles, decided by the Role column of the Users sheet:
 //
-//   PROJECTSITE -> the inventory modules only
-//   ENGINEER    -> the Project Accomplishment module only
-//   ADMIN       -> the two dashboards and nothing else
+//   PROJECTSITE -> the inventory modules only (no PDM Schedule)
+//   ENGINEER    -> the Project Accomplishment module + PDM Schedule
+//   ADMIN       -> the three dashboards (inventory, accomplishment, PDM)
+//
+// PDM Schedule is reserved for the .ENGINEER / .ADMIN identities - the legacy
+// username suffix (exactly like isAdmin()) or the matching Role value - so a
+// project-site account such as "democer.popjv" never sees it.
 //
 // An account with no Role keeps the historic behaviour (every module), so
 // existing users and every automated suite see no change at all.
@@ -3165,18 +3201,35 @@ function sessionRole() {
   return String(SESSION_ROLE || '').trim().toUpperCase();
 }
 
+// The .ENGINEER suffix, mirroring how the legacy .ADMIN suffix works.
+function isEngineer() {
+  return sessionRole() === 'ENGINEER' || /\.ENGINEER$/i.test(SESSION_USERNAME || '');
+}
+
+// Who may open the PDM Schedule at all (the role lists below can only narrow
+// this further): .ENGINEER / .ADMIN by suffix or by Role; any other explicit
+// role never schedules; a dotted account that names something else - a project
+// site, e.g. "democer.popjv" - never schedules; an account with neither a role
+// nor a suffix keeps the unrestricted legacy behaviour.
+function canSeePdm() {
+  if (isEngineer() || isAdmin()) return true;
+  if (sessionRole()) return false;
+  return !getProjectSiteFromUsername(SESSION_USERNAME);
+}
+
 // null = unrestricted, because no role is configured for this account.
 function allowedViewKeys() {
   const role = sessionRole();
-  // The scheduling network belongs to both working roles; the Admin keeps the
-  // narrow "two dashboards only" view it was given.
   if (role === 'ENGINEER') return PA_VIEW_KEYS.concat(PDM_VIEW_KEYS);
-  if (role === 'PROJECTSITE' || role === 'INVENTORY') return INVENTORY_VIEW_KEYS.concat(PDM_VIEW_KEYS);
-  if (role === 'ADMIN') return ['dashboard', 'paDashboard'];
+  if (role === 'PROJECTSITE' || role === 'INVENTORY') return INVENTORY_VIEW_KEYS;
+  // .ADMIN by Role or by username suffix sees exactly the three dashboards -
+  // the PDM Schedule opens its dashboard and nothing deeper.
+  if (isAdmin()) return ['dashboard', 'paDashboard', 'pdmDashboard'];
   return null;
 }
 
 function canOpenView(key) {
+  if (PDM_VIEW_KEYS.indexOf(key) > -1 && !canSeePdm()) return false;
   const allowed = allowedViewKeys();
   return !allowed || allowed.indexOf(key) > -1;
 }
@@ -3203,7 +3256,8 @@ function applyRoleNavigation() {
 
   document.querySelectorAll('.nav-item[data-view]').forEach(item => {
     const key = item.getAttribute('data-view');
-    const visible = !allowed || allowed.indexOf(key) > -1;
+    const visible = (!allowed || allowed.indexOf(key) > -1) &&
+      (PDM_VIEW_KEYS.indexOf(key) === -1 || canSeePdm());
     item.style.display = visible ? '' : 'none';
     if (!visible) item.classList.remove('active');
   });
@@ -3216,10 +3270,10 @@ function applyRoleNavigation() {
   }
 
   // The nested PDM Schedule sub-module lives inside the combined group and
-  // disappears with its four entries when the role may not schedule.
+  // disappears with its entries when the identity may not schedule.
   const pdmSub = document.querySelector('.pdm-nav-submodule');
   if (pdmSub) {
-    const anyPdm = !allowed || allowed.some(k => PDM_VIEW_KEYS.indexOf(k) > -1);
+    const anyPdm = canSeePdm() && (!allowed || allowed.some(k => PDM_VIEW_KEYS.indexOf(k) > -1));
     pdmSub.style.display = anyPdm ? '' : 'none';
   }
 
@@ -6444,12 +6498,25 @@ function populateDashboardSiteFilter() {
   const select = $('dashboardSiteFilter');
   if (!select) return;
 
-  select.innerHTML = '<option value="">All Sites</option>' +
-    ALL_SITES.map(site => `<option value="${esc(site)}">${esc(site)}</option>`).join('');
-
   const currentSite = getProjectSiteFromUsername(SESSION_USERNAME);
+  // Only an .ADMIN account (suffix or Role - the same test applySiteLock
+  // uses) may switch the dashboard between sites or leave it on "All Sites";
+  // any other account that has a site is pinned to its own one, exactly like
+  // the entry modules' site lock. An account with no site keeps the historic
+  // "All Sites" behaviour.
+  const canPickAll = isAdmin() || !currentSite;
+  const sites = canPickAll ? ALL_SITES : [currentSite];
+
+  select.innerHTML = (canPickAll ? '<option value="">All Sites</option>' : '') +
+    sites.map(site => `<option value="${esc(site)}">${esc(site)}</option>`).join('');
+
+  // Preselect the account's own site, matched case-insensitively against the
+  // sheet - "Democer.popjv" must select the sheet's "POPjv". An .ADMIN whose
+  // suffix is a role marker rather than a site stays on "All Sites".
   if (currentSite) {
-    select.value = currentSite;
+    const hit = sites.find(site =>
+      String(site).trim().toLowerCase() === currentSite.toLowerCase());
+    if (hit !== undefined) select.value = hit;
   }
   updateDashboardFilterSummary();
 }
