@@ -468,6 +468,22 @@
  .scroll-x::-webkit-scrollbar-thumb:hover{background:rgba(59,130,246,.5)}
 
 /* --- icons --------------------------------------------------------------- */
+ /* svg line icons: they replace the old emoji icons, inherit currentColor and
+    are sized per slot so every tile keeps its optical balance */
+ .ico{width:1em;height:1em;display:inline-block;vertical-align:-.15em;flex:none}
+ .kpi-icon .ico{width:20px;height:20px}
+ .empty-state-icon .ico,.error-state-icon .ico{width:26px;height:26px}
+ .notif-btn .ico{width:20px;height:20px}
+ .user-avatar .ico{width:18px;height:18px}
+ .profile-preview .ico{width:44px;height:44px;color:var(--muted)}
+ .sidebar-brand .ico{width:18px;height:18px;vertical-align:-3px;margin-right:6px;color:var(--accent)}
+ .dashboard-meta-item .ico{width:14px;height:14px;color:var(--muted)}
+ .btn-icon .ico{width:16px;height:16px;vertical-align:-3px}
+ .filter-drawer-toggle .ico{width:14px;height:14px;vertical-align:-2px}
+ .login-weather .ico{width:16px;height:16px;color:#7dd3fc}
+ .login-eye svg{width:20px;height:20px}
+ .notif-card-ico{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(148,163,184,.12);flex:none}
+ .notif-card-ico .ico{width:16px;height:16px}
  .kpi-icon{top:14px;right:14px;width:38px;height:38px;border-radius:11px;border:1px solid rgba(148,163,184,.14);background:rgba(59,130,246,.12);font-size:1.05rem;line-height:1;opacity:1;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
  .kpi-card.green .kpi-icon{background:rgba(34,197,94,.13);border-color:rgba(34,197,94,.24)}
  .kpi-card.purple .kpi-icon{background:rgba(168,85,247,.13);border-color:rgba(168,85,247,.24)}
@@ -972,6 +988,21 @@
  .pdm-node.finish .pdm-node-id{color:#d8b4fe}
  .pdm-node-progress{height:5px;background:rgba(30,58,138,.5)}
  .pdm-node-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--accent))}
+ /* planned-progress engine: node readings, gantt planned marker, plan card */
+ .pdm-node-plan{display:flex;justify-content:space-between;gap:6px;padding:3px 9px 5px;font-size:.68rem;
+   color:var(--muted-2);border-top:1px dashed rgba(148,163,184,.18)}
+ .pdm-node-plan b{color:var(--ink-2);font-weight:600}
+ .pdm-gantt-bar u{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px solid #a855f7;
+   margin-left:-1px;pointer-events:none;opacity:.95}
+ .pdm-key.planl{display:inline-block;width:2px;height:12px;background:#a855f7;border-radius:1px;vertical-align:-2px}
+ .pdm-plan-toolbar{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+ .pdm-plan-warnings{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+ .pdm-plan-warnings .pdm-plan-warn,.pdm-plan-warnings .pdm-plan-ok{display:flex;align-items:flex-start;
+   gap:8px;padding:9px 12px;border-radius:9px;font-size:.83rem;line-height:1.45}
+ .pdm-plan-warnings .pdm-plan-warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);color:#fcd34d}
+ .pdm-plan-warnings .pdm-plan-ok{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.28);color:#86efac}
+ .pdm-plan-warnings .ico{width:16px;height:16px;flex:none;margin-top:1px}
+ .pdm-plan-tablewrap{max-height:340px;overflow:auto}
 
  /* --- gantt ----------------------------------------------------------------- */
  .pdm-gantt{display:grid;grid-template-columns:260px minmax(0,1fr);border:1px solid var(--line);
@@ -1181,7 +1212,7 @@
  <!-- Sidebar Navigation -->
  <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-   <h2 class="sidebar-brand">📦 Inventory</h2>
+   <h2 class="sidebar-brand"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>Inventory</h2>
   </div>
   <nav class="sidebar-nav">
    <a class="nav-item active" data-view="dashboard" onclick="navigateTo('dashboard')">
@@ -1286,12 +1317,12 @@
     </a>
     <div class="header-right">
      <button id="btnNotifications" class="notif-btn" title="Notifications">
-      🔔
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
       <span id="notifBadge" class="notif-badge" style="display:none">0</span>
      </button>
      <div class="user-section" id="userNameChip" title="Edit profile">
       <div class="user-avatar" id="headerProfilePic">
-       <span class="placeholder">👤</span>
+       <span class="placeholder" data-ico="user"></span>
       </div>
       <span class="user-name" id="userNameLabel">Signed out</span>
       <span class="user-dropdown-icon">⌄</span>
@@ -1335,7 +1366,13 @@
     <label for="loginPass">Password</label>
     <div class="login-pass">
      <input id="loginPass" type="password" autocomplete="current-password" placeholder="Enter your password" />
-     <button type="button" id="loginPassToggle" class="login-eye" aria-label="Show password" aria-pressed="false" title="Show password">👁</button>
+     <button type="button" id="loginPassToggle" class="login-eye" aria-label="Show password" aria-pressed="false" title="Show password">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+  <circle cx="12" cy="12" r="3"/>
+</svg></button>
     </div>
 
     <div class="login-row">
@@ -1353,14 +1390,14 @@
 
 <!-- Success Modal -->
 <div id="successModal" class="success-modal" style="display:none">
- <h2>✓ Success</h2>
+ <h2>Success</h2>
  <p id="successMsg"></p>
 </div>
 
 <!-- Confirm Modal (upload gate: nothing is sent until the user accepts) -->
 <div id="confirmMask" class="modal-mask">
  <div class="modal confirm-modal">
-  <h3 style="margin:0 0 12px 0;color:var(--warn)">🔔 Confirm Upload</h3>
+  <h3 style="margin:0 0 12px 0;color:var(--warn)">Confirm Upload</h3>
   <p id="confirmMsg" class="help" style="margin:0"></p>
   <div class="confirm-body">
    <div id="confirmDetails"></div>
@@ -1397,7 +1434,7 @@
     <button id="btnCloseProfile" class="btn small secondary">Close</button>
   </div>
   <div class="profile-preview" id="profilePreview">
-   <span class="placeholder">👤</span>
+   <span class="placeholder" data-ico="user"></span>
   </div>
   <div class="file-input-wrapper">
    <label for="profilePicInput" class="file-input-btn">Upload Photo</label>
@@ -1431,11 +1468,11 @@
  <!-- DASHBOARD -->
  <section id="viewDashboard" class="view">
   <div class="dashboard-header">
-   <h2 class="dashboard-title">📊 Inventory Dashboard</h2>
+   <h2 class="dashboard-title">Inventory Dashboard</h2>
    <div class="dashboard-subtitle">Real-time construction materials inventory overview</div>
    <div class="dashboard-meta">
     <div class="dashboard-meta-item dashboard-last-updated">
-     <span aria-hidden="true">&#128338;</span>
+     <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
      <span>Last Updated:&nbsp;<strong id="dashboardLastUpdated">&mdash;</strong></span>
     </div>
     <div class="dashboard-meta-item">
@@ -1475,15 +1512,15 @@
    </div>
    <div class="dashboard-filters-actions">
     <button type="button" class="filter-drawer-toggle" id="btnDashboardFilterToggle" aria-expanded="false" aria-controls="dashboardFiltersGrid">
-     <span aria-hidden="true">&#9776;</span> Filters<span id="dashboardFilterCount"></span>
+     <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span> Filters<span id="dashboardFilterCount"></span>
     </button>
     <button type="button" class="btn small dashboard-auto-btn" id="btnDashboardAutoToggle"
             aria-pressed="true" aria-label="Toggle automatic dashboard refresh">
-     <span class="btn-icon" aria-hidden="true">&#9203;</span>
+     <span class="btn-icon" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
      <span id="dashboardAutoHint">Auto 60s</span>
     </button>
     <button type="button" class="btn small dashboard-refresh-btn" id="btnDashboardRefresh" aria-label="Refresh dashboard data" title="Reload the latest data from the database">
-     <span class="btn-icon" aria-hidden="true">&#10227;</span>
+     <span class="btn-icon" aria-hidden="true" data-ico="refresh"></span>
      <span id="dashboardRefreshLabel">Refresh</span>
     </button>
    </div>
@@ -1495,37 +1532,37 @@
   <!-- KPI Cards -->
   <div class="kpi-grid">
    <div class="kpi-card green" id="kpiTotalMaterials">
-    <div class="kpi-icon">📦</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
     <div class="kpi-label">Total Materials</div>
     <div class="kpi-value" id="kpiTotalMaterialsValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change">Unique items tracked</div>
    </div>
    <div class="kpi-card green" id="kpiTotalReceived">
-    <div class="kpi-icon">📥</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>
     <div class="kpi-label">Total Received</div>
     <div class="kpi-value" id="kpiTotalReceivedValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change positive">IN transactions</div>
    </div>
    <div class="kpi-card purple" id="kpiTotalIssued">
-    <div class="kpi-icon">📤</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
     <div class="kpi-label">Total Issued</div>
     <div class="kpi-value" id="kpiTotalIssuedValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change negative">OUT transactions</div>
    </div>
    <div class="kpi-card" id="kpiCurrentBalance">
-    <div class="kpi-icon">⚖️</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><line x1="12" y1="6" x2="12" y2="21"/><line x1="7" y1="21" x2="17" y2="21"/><line x1="4" y1="7" x2="20" y2="7"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 7l-2.5 6a3 3 0 0 0 5 0z"/></svg></div>
     <div class="kpi-label">Current Balance</div>
     <div class="kpi-value" id="kpiCurrentBalanceValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change">Total on-hand inventory</div>
    </div>
    <div class="kpi-card yellow" id="kpiPendingTransfers">
-    <div class="kpi-icon">🔄</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
     <div class="kpi-label">Pending Transfers</div>
     <div class="kpi-value" id="kpiPendingTransfersValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change">Awaiting action</div>
    </div>
    <div class="kpi-card red" id="kpiLowStock">
-    <div class="kpi-icon">⚠️</div>
+    <div class="kpi-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
     <div class="kpi-label">Low Stock Alerts</div>
     <div class="kpi-value" id="kpiLowStockValue"><span class="skeleton skeleton-value" style="display:block"></span></div>
     <div class="kpi-change">Items below threshold</div>
@@ -1721,7 +1758,7 @@
  <!-- MATERIAL INPUT -->
  <section id="viewMaterial" class="view">
   <form id="invForm" class="card" novalidate>
-   <h2 style="margin-top:0">📥 Material Input</h2>
+   <h2 style="margin-top:0">Material Input</h2>
    <div class="grid" style="grid-template-columns:1fr 1fr">
     <div><label>Transaction Date</label><input type="date" id="transDate" disabled /></div>
     <div id="projectSiteField"><label>Project Site *</label><select id="projectSite"><option value="">Select a site…</option></select><div class="help" id="projectSiteHelp">Locked to the site of your account</div></div>
@@ -1768,7 +1805,7 @@
  <!-- ONSITE -->
  <section id="viewOnsite" class="view">
   <form id="onsiteForm" class="card" novalidate>
-   <h2 style="margin-top:0">📦 On‑site Material Inventory</h2>
+   <h2 style="margin-top:0">On‑site Material Inventory</h2>
    <div class="grid" style="grid-template-columns:1fr 1fr">
     <div><label>Inventory Date</label><input type="date" id="invDate" /></div>
     <div><label>Project Site *</label><select id="siteOn"><option value="">Select a site…</option></select><div class="help" id="siteOnHelp">Locked to the site of your account</div></div>
@@ -1801,7 +1838,7 @@
  <!-- BALANCE SEARCH -->
  <section id="viewBalance" class="view">
   <div class="card">
-   <h2 style="margin-top:0">🔍 Balance Search</h2>
+   <h2 style="margin-top:0">Balance Search</h2>
    <div class="help">Search by Description across all sites with automatic suggestions.</div>
    <div class="bal-search-row">
     <div class="bal-search-field">
@@ -1829,7 +1866,7 @@
  <!-- ANALYTICS -->
  <section id="viewAnalytics" class="view">
   <div class="card">
-   <h2 style="margin-top:0">📊 Analytics</h2>
+   <h2 style="margin-top:0">Analytics</h2>
    <div class="help">Analytics module coming soon.</div>
   </div>
  </section>
@@ -1837,7 +1874,7 @@
  <!-- SETTINGS -->
  <section id="viewSettings" class="view">
   <div class="card">
-   <h2 style="margin-top:0">⚙️ Settings</h2>
+   <h2 style="margin-top:0">Settings</h2>
    <div class="help">Settings module coming soon.</div>
   </div>
  </section>
@@ -1849,7 +1886,7 @@
   <section id="viewPADashboard" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>🏗️ Construction Project Accomplishment Dashboard</h2>
+     <h2>Construction Project Accomplishment Dashboard</h2>
      <p>Weighted accomplishment for the selected contract — combined in one module with the PDM Schedule; inventory records and schedule records stay completely separate.</p>
     </div>
     <div class="pa-field">
@@ -1866,7 +1903,7 @@
     </div>
     <div class="pa-toolbar-actions">
      <button type="button" class="btn small" id="paBtnRefresh" aria-label="Refresh project accomplishment data" title="Reload this project's accomplishment data">
-      <span class="btn-icon" aria-hidden="true">&#10227;</span><span id="paRefreshLabel">Refresh</span>
+      <span class="btn-icon" aria-hidden="true" data-ico="refresh"></span><span id="paRefreshLabel">Refresh</span>
      </button>
     </div>
    </div>
@@ -1879,61 +1916,61 @@
         schedule exists yet. -->
    <div class="pa-kpi-grid">
     <div class="kpi-card">
-     <div class="kpi-icon">&#128176;</div>
+     <div class="kpi-icon" data-ico="dollar"></div>
      <div class="kpi-label">Original Contract Amount</div>
      <div class="kpi-value" id="paKpiOriginal">&mdash;</div>
      <div class="kpi-change"><span id="paKpiOriginalNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#128179;</div>
+     <div class="kpi-icon" data-ico="card"></div>
      <div class="kpi-label">Revised Contract Amount</div>
      <div class="kpi-value" id="paKpiContract">&mdash;</div>
      <div class="kpi-change"><span id="paKpiContractNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#9193;</div>
+     <div class="kpi-icon" data-ico="back"></div>
      <div class="kpi-label">Previous Accomplishment %</div>
      <div class="kpi-value" id="paKpiPrevious">&mdash;</div>
      <div class="kpi-change"><span id="paKpiPreviousNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#128200;</div>
+     <div class="kpi-icon" data-ico="up"></div>
      <div class="kpi-label">This Period %</div>
      <div class="kpi-value" id="paKpiThisPeriod">&mdash;</div>
      <div class="kpi-change"><span id="paKpiThisPeriodNote">&mdash;</span></div>
     </div>
     <div class="kpi-card green">
-     <div class="kpi-icon">&#9989;</div>
+     <div class="kpi-icon" data-ico="check"></div>
      <div class="kpi-label">Cumulative Accomplishment %</div>
      <div class="kpi-value" id="paKpiOverall">&mdash;</div>
      <div class="kpi-change"><span id="paKpiOverallNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#128178;</div>
+     <div class="kpi-icon" data-ico="money"></div>
      <div class="kpi-label">Accomplished Amount</div>
      <div class="kpi-value" id="paKpiAccomplished">&mdash;</div>
      <div class="kpi-change"><span id="paKpiAccomplishedNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#128177;</div>
+     <div class="kpi-icon" data-ico="wallet"></div>
      <div class="kpi-label">Remaining Amount</div>
      <div class="kpi-value" id="paKpiRemaining">&mdash;</div>
      <div class="kpi-change"><span id="paKpiRemainingNote">&mdash;</span></div>
     </div>
     <div class="kpi-card">
-     <div class="kpi-icon">&#127919;</div>
+     <div class="kpi-icon" data-ico="target"></div>
      <div class="kpi-label">Target vs Actual</div>
      <div class="kpi-value" id="paKpiTarget">&mdash;</div>
      <div class="kpi-change"><span id="paKpiTargetNote">&mdash;</span></div>
     </div>
     <div class="kpi-card red">
-     <div class="kpi-icon">&#128201;</div>
+     <div class="kpi-icon" data-ico="down"></div>
      <div class="kpi-label">Slippage %</div>
      <div class="kpi-value" id="paKpiSlippage">&mdash;</div>
      <div class="kpi-change"><span id="paKpiSlippageNote">&mdash;</span></div>
     </div>
     <div class="kpi-card purple">
-     <div class="kpi-icon">&#128202;</div>
+     <div class="kpi-icon" data-ico="bars"></div>
      <div class="kpi-label">Planned Accomplishment %</div>
      <div class="kpi-value" id="paKpiPlanned">&mdash;</div>
      <div class="kpi-change"><span id="paKpiPlannedNote">&mdash;</span></div>
@@ -1993,7 +2030,7 @@
   <section id="viewPAContractItems" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>📋 Contract Items — BOQ / Variation Order</h2>
+     <h2>Contract Items — BOQ / Variation Order</h2>
      <p>Project &rarr; Original BOQ &rarr; VO &rarr; Revised BOQ &rarr; Item Weight &rarr; Monthly Accomplishment &rarr; Weighted &rarr; Project Total. Only the white cells are typed; every amount and percentage is derived.</p>
     </div>
     <div class="pa-field">
@@ -2115,7 +2152,7 @@
   <section id="viewPAReports" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>📄 Project Reports</h2>
+     <h2>Project Reports</h2>
      <p>Period report and accomplishment history for the selected contract.</p>
     </div>
     <div class="pa-field">
@@ -2182,7 +2219,7 @@
   <section id="viewPAAnalytics" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>📈 Analytics</h2>
+     <h2>Analytics</h2>
      <p>How the contract is performing — distribution, contribution and value.</p>
     </div>
     <div class="pa-field">
@@ -2229,7 +2266,7 @@
   <section id="viewPASettings" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>⚙️ Project Accomplishment Settings</h2>
+     <h2>Project Accomplishment Settings</h2>
      <p>Project details, reporting period and maintenance for this module only.</p>
     </div>
     <div class="pa-field">
@@ -2284,7 +2321,7 @@
   <section id="viewPdmDashboard" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>🗓️ PDM Schedule Dashboard</h2>
+     <h2>PDM Schedule Dashboard</h2>
      <p>Forward pass, backward pass, float and critical path — combined in one module with Project Accomplishment; inventory and accomplishment records are never touched.</p>
     </div>
     <div class="pa-field">
@@ -2301,7 +2338,7 @@
     </div>
     <div class="pa-toolbar-actions">
      <button type="button" class="btn small" id="pdmDashRefresh" aria-label="Refresh PDM schedule" title="Recalculate and reload this schedule">
-      <span class="btn-icon" aria-hidden="true">&#10227;</span><span id="pdmDashRefreshLabel">Refresh</span>
+      <span class="btn-icon" aria-hidden="true" data-ico="refresh"></span><span id="pdmDashRefreshLabel">Refresh</span>
      </button>
     </div>
    </div>
@@ -2341,7 +2378,7 @@
       <span><span class="pdm-key donel"></span> Completed</span>
       <span><span class="pdm-key depl"></span> Dependency</span>
       <span><span class="pdm-key susp"></span> Suspension</span>
-      <span><span class="pdm-key holdl"></span> On hold</span>
+      <span><span class="pdm-key holdl"></span> On hold</span> <span><span class="pdm-key planl"></span> Planned marker</span>
      </div>
     </div>
    </div>
@@ -2401,6 +2438,59 @@
      <div class="pa-figures" id="pdmDashSummary"></div>
     </div>
 
+    <!-- PLANNED VS ACTUAL: painted by the centralized progress engine
+         (pdmPlan) - the single source of truth shared with the Gantt, the
+         Network Diagram and the Project Accomplishment Dashboard. -->
+    <div class="table-card" id="pdmPlanCard">
+     <div class="table-header">
+      <h3 class="table-title">Planned vs Actual Accomplishment</h3>
+      <span class="chart-hint" id="pdmPlanMeta">&mdash;</span>
+     </div>
+     <p class="pa-note">Automated by the centralized progress engine: activity weights come from each
+      pay item&rsquo;s revised contract amount, daily planned progress accrues only on working days
+      inside the calculated start&ndash;finish windows (approved calendar plus suspension periods),
+      and slippage is <strong>Actual &minus; Planned</strong> &mdash; negative means delayed, positive
+      means ahead of schedule.</p>
+     <div class="pdm-plan-toolbar">
+      <div class="pa-field">
+       <label for="pdmPlanAsOf">Progress as of</label>
+       <input id="pdmPlanAsOf" type="date" min="2000-01-01" />
+      </div>
+      <div class="pa-field">
+       <label for="pdmPlanGran">Rollup</label>
+       <select id="pdmPlanGran">
+        <option value="daily">Daily</option>
+        <option value="weekly" selected>Weekly</option>
+        <option value="monthly">Monthly</option>
+       </select>
+      </div>
+     </div>
+     <div class="pa-kpi-grid" id="pdmPlanKpis"></div>
+     <div class="chart-header">
+      <h3 class="chart-title">Cumulative Accomplishment S-Curve</h3>
+      <span class="chart-hint" id="pdmPlanChartMeta">&mdash;</span>
+     </div>
+     <div class="pa-trend" id="pdmPlanChart"></div>
+     <div class="pa-legend">
+      <span class="pa-legend-item"><span class="pa-key planned"></span>Planned (progress engine)</span>
+      <span class="pa-legend-item"><span class="pa-key actual"></span>Actual (accomplishment store)</span>
+     </div>
+     <div class="scroll-x pdm-plan-tablewrap">
+      <table class="dashboard-table pdm-table">
+       <thead><tr>
+        <th style="min-width:100px">Period</th>
+        <th class="num" style="min-width:110px">Planned This Period</th>
+        <th class="num" style="min-width:110px">Actual This Period</th>
+        <th class="num" style="min-width:130px">Planned Cumulative</th>
+        <th class="num" style="min-width:130px">Actual Cumulative</th>
+        <th class="num" style="min-width:110px">Slippage</th>
+       </tr></thead>
+       <tbody id="pdmPlanBody"></tbody>
+      </table>
+     </div>
+     <div id="pdmPlanWarnings" class="pdm-plan-warnings"></div>
+    </div>
+
     <div class="table-card">
      <div class="table-header">
       <h3 class="table-title">Project Accomplishment Status</h3>
@@ -2418,7 +2508,7 @@
   <section id="viewPdmEntry" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>📝 PDM Schedule — Activity Data Entry</h2>
+     <h2>PDM Schedule — Activity Data Entry</h2>
      <p>The contract items drive the schedule: pick a contract, type the four schedule fields per item, everything else is calculated.</p>
     </div>
     <div class="pa-field">
@@ -2490,6 +2580,9 @@
         <th class="num" style="min-width:118px">Finish</th>
         <th class="num" style="min-width:86px">Float</th>
         <th style="min-width:96px">Critical</th>
+        <th class="num" style="min-width:86px" title="Activity budget as a share of the revised contract">Weight %</th>
+        <th class="num" style="min-width:96px" title="Planned progress on the activity's own scale as of the selected date">Planned %</th>
+        <th class="num" style="min-width:92px" title="Actual minus planned (negative = delayed)">Slippage</th>
         <th class="num" style="min-width:96px">Progress</th>
         <th style="min-width:56px"></th>
        </tr></thead>
@@ -2506,7 +2599,7 @@
   <section id="viewPdmNetwork" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>🕸️ PDM Network Diagram</h2>
+     <h2>PDM Network Diagram</h2>
      <p>Every activity as a node with ES / EF / LS / LF and float, linked by its predecessor relationships.</p>
     </div>
     <div class="pa-field">
@@ -2548,7 +2641,7 @@
   <section id="viewPdmGantt" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>📊 PDM Gantt Schedule</h2>
+     <h2>PDM Gantt Schedule</h2>
      <p>Generated automatically from the PDM network — bars, progress, dependencies and the critical path.</p>
     </div>
     <div class="pa-field">
@@ -2565,12 +2658,17 @@
     </div>
     <div class="pa-toolbar-actions">
      <button type="button" class="btn small" id="pdmGanttRefresh" aria-label="Recalculate the Gantt schedule">
-      <span class="btn-icon" aria-hidden="true">&#10227;</span><span>Recalculate</span>
+      <span class="btn-icon" aria-hidden="true" data-ico="refresh"></span><span>Recalculate</span>
+     </button>
+     <button type="button" class="btn small secondary" id="pdmGanttBaseline" aria-label="Record the approved baseline"
+             title="Snapshot the current calculated dates as the approved baseline. Historical baseline records are never overwritten.">
+      <span class="btn-icon" aria-hidden="true" data-ico="target"></span><span>Record Baseline</span>
      </button>
     </div>
    </div>
 
    <div id="pdmGanttError" class="pdm-error" style="display:none" role="alert"></div>
+   <div id="pdmGanttMsg" class="pa-msg help"></div>
 
    <div class="chart-card">
     <div class="chart-header">
@@ -2584,7 +2682,7 @@
      <span><span class="pdm-key donel"></span> Completed</span>
      <span><span class="pdm-key depl"></span> Dependency</span>
      <span><span class="pdm-key susp"></span> Suspension band</span>
-     <span><span class="pdm-key holdl"></span> On hold</span>
+     <span><span class="pdm-key holdl"></span> On hold</span> <span><span class="pdm-key planl"></span> Planned marker</span>
      <span style="margin-left:auto;color:var(--muted-2)">Dashed line = today</span>
     </div>
    </div>
@@ -2594,7 +2692,7 @@
   <section id="viewPdmSuspension" class="view">
    <div class="pa-toolbar">
     <div class="pa-toolbar-title">
-     <h2>⏸️ PDM Suspension Orders &amp; Resumption</h2>
+     <h2>PDM Suspension Orders &amp; Resumption</h2>
      <p>Suspension orders are applied to the PDM scheduling engine as a calendar — durations, relationships, lag, float and the critical path are recalculated automatically, never hand-edited.</p>
     </div>
     <div class="pa-field">
@@ -2607,7 +2705,7 @@
     </div>
     <div class="pa-toolbar-actions">
      <button type="button" class="btn small" id="pdmSuspRefresh" aria-label="Recalculate the suspension schedule">
-      <span class="btn-icon" aria-hidden="true">&#10227;</span><span>Refresh</span>
+      <span class="btn-icon" aria-hidden="true" data-ico="refresh"></span><span>Refresh</span>
      </button>
     </div>
    </div>
@@ -2729,6 +2827,68 @@
 <datalist id="allowedItemCodes"></datalist>
 
 <script>
+// ------------------------------------------------------------------ icons ---
+// A small hand-built stroke icon set (24x24, 2px, currentColor) that replaces
+// every emoji used as an icon, so the UI renders identically on every OS and
+// picks up the surrounding text color. ico(name) returns the inline <svg>.
+const ICON_PATHS = {
+  'box': '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>',
+  'bell': '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+  'user': '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  'clock': '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  'menu': '<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>',
+  'refresh': '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
+  'inbox': '<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+  'send': '<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>',
+  'alert': '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+  'scale': '<circle cx="12" cy="4.5" r="1.5"/><line x1="12" y1="6" x2="12" y2="21"/><line x1="7" y1="21" x2="17" y2="21"/><line x1="4" y1="7" x2="20" y2="7"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 7l-2.5 6a3 3 0 0 0 5 0z"/>',
+  'bars': '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+  'up': '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+  'down': '<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>',
+  'search': '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
+  'file': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>',
+  'list': '<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>',
+  'calendar': '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+  'edit': '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  'share': '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>',
+  'pause': '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>',
+  'target': '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  'dollar': '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+  'card': '<rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>',
+  'money': '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/>',
+  'wallet': '<path d="M21 7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16V7H5a2 2 0 0 1-2-2z"/><line x1="16" y1="14" x2="16.01" y2="14"/>',
+  'check': '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  'x': '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>',
+  'eye': '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  'eye-off': '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>',
+  'pie': '<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>',
+  'layers': '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  'square': '<rect x="3" y="3" width="18" height="18" rx="2"/>',
+  'move': '<polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>',
+  'back': '<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>',
+  'zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  'thermometer': '<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>',
+  'sun': '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>',
+  'partly': '<circle cx="8" cy="8" r="3.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1.06 1.06M11.54 11.54l1.06 1.06M12.6 3.4l-1.06 1.06M4.44 11.54l-1.06 1.06"/><path d="M17.5 20H9a4 4 0 1 1 .74-7.94A5 5 0 0 1 19 13.5a3.25 3.25 0 0 1-1.5 6.5z"/>',
+  'cloud': '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>',
+  'fog': '<path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>',
+  'drizzle': '<path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/><line x1="8" y1="16" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="20"/><line x1="16" y1="16" x2="16" y2="18"/>',
+  'rain': '<path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/><line x1="16" y1="16" x2="16" y2="21"/><line x1="8" y1="16" x2="8" y2="21"/><line x1="12" y1="18" x2="12" y2="23"/>',
+  'snow': '<path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 4 14.9"/><line x1="8" y1="16" x2="8" y2="18.5"/><line x1="12" y1="18" x2="12" y2="20.5"/><line x1="16" y1="16" x2="16" y2="18.5"/>',
+  'storm': '<path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/><polyline points="13 11 9 17 15 17 11 23"/>'
+};
+function ico(name, cls) {
+  const body = ICON_PATHS[name] || '';
+  if (!body) return '';
+  return '<svg class="ico' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + body + '</svg>';
+}
+// Static markup declares its icon with data-ico="name"; paint them once at
+// startup, while JS-rendered icons call ico() directly at build time.
+document.querySelectorAll('[data-ico]').forEach(function (el) {
+  el.innerHTML = ico(el.getAttribute('data-ico'));
+});
+
 const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyNw4d5xGYLC2KoYSOjX8eULZP7Sy55JAzcbTwSKDV4Zffmt8w0CzrzmgcVpUnsj2-HcQ/exec';
 
 // ------------------------------------------------------------------ state ---
@@ -2982,17 +3142,17 @@ function showView(which) {
 // WMO weather codes -> readable text + icon.
 function loginWeatherInfo(code) {
   const c = Number(code);
-  if (c === 0) return { t: 'Clear sky', i: '☀️' };
-  if (c === 1) return { t: 'Mainly clear', i: '🌤️' };
-  if (c === 2) return { t: 'Partly cloudy', i: '⛅' };
-  if (c === 3) return { t: 'Overcast', i: '☁️' };
-  if (c === 45 || c === 48) return { t: 'Fog', i: '🌫️' };
-  if (c >= 51 && c <= 57) return { t: 'Drizzle', i: '🌦️' };
-  if (c === 61 || c === 63 || c === 65 || c === 66 || c === 67) return { t: 'Rain', i: '🌧️' };
-  if (c === 71 || c === 73 || c === 75 || c === 77 || c === 85 || c === 86) return { t: 'Snow', i: '❄️' };
-  if (c === 80 || c === 81 || c === 82) return { t: 'Rain showers', i: '🌦️' };
-  if (c === 95 || c === 96 || c === 99) return { t: 'Thunderstorm', i: '⛈️' };
-  return { t: 'Conditions unavailable', i: '🌡️' };
+  if (c === 0) return { t: 'Clear sky', i: ico('sun') };
+  if (c === 1) return { t: 'Mainly clear', i: ico('partly') };
+  if (c === 2) return { t: 'Partly cloudy', i: ico('partly') };
+  if (c === 3) return { t: 'Overcast', i: ico('cloud') };
+  if (c === 45 || c === 48) return { t: 'Fog', i: ico('fog') };
+  if (c >= 51 && c <= 57) return { t: 'Drizzle', i: ico('drizzle') };
+  if (c === 61 || c === 63 || c === 65 || c === 66 || c === 67) return { t: 'Rain', i: ico('rain') };
+  if (c === 71 || c === 73 || c === 75 || c === 77 || c === 85 || c === 86) return { t: 'Snow', i: ico('snow') };
+  if (c === 80 || c === 81 || c === 82) return { t: 'Rain showers', i: ico('drizzle') };
+  if (c === 95 || c === 96 || c === 99) return { t: 'Thunderstorm', i: ico('storm') };
+  return { t: 'Conditions unavailable', i: ico('thermometer') };
 }
 
 // The Open-Meteo request for "today" at one coordinate pair (timezone=auto so
@@ -3612,20 +3772,20 @@ async function refreshNotifications() {
     const docRef = docNumber ? `, Document No: ${docNumber}` : '';
 
     if (status === 'PENDING') {
-      icon = '📤';
+      icon = ico('send');
       bgColor = 'rgba(245, 158, 11, 0.1)';
       summaryText = `${sender} wants to transfer: ${qty} ${unit} ${description}${docRef}`;
     } else if (status === 'ACCEPTED') {
-      icon = '✅';
+      icon = ico('check');
       bgColor = 'rgba(16, 185, 129, 0.1)';
       summaryText = `${toSite} accepted your ${docType ? docType + ' ' : ''}transfer of ${description}${docRef} — deducted from your inventory`;
     } else if (status === 'REJECTED') {
-      icon = '❌';
+      icon = ico('x');
       bgColor = 'rgba(239, 68, 68, 0.1)';
       summaryText = `${toSite} rejected your ${docType ? docType + ' ' : ''}transfer of ${description}${docRef} — the quantity remains in your inventory`;
     } else {
       // Safety net so a notification card can never render blank.
-      icon = '📄';
+      icon = ico('file');
       bgColor = 'rgba(148, 163, 184, 0.1)';
       summaryText = `${sender} transfer of ${qty} ${unit} ${description}${docRef}`;
     }
@@ -3638,7 +3798,7 @@ async function refreshNotifications() {
     div.style.cssText = `padding:12px;margin-bottom:8px;border-radius:8px;background:${finalBg};border:1px solid var(--border);cursor:pointer;transition:background 0.2s;opacity:${opacity}`;
     div.innerHTML = `
       <div style="display:flex;align-items:center;gap:8px">
-        <span style="font-size:1.2rem">${icon}</span>
+        <span class="notif-card-ico">${icon}</span>
         <div style="flex:1">
           <div style="font-weight:500;color:var(--text)">${esc(summaryText)}</div>
         </div>
@@ -3930,7 +4090,7 @@ document.addEventListener('DOMContentLoaded', () => {
     passToggle.setAttribute('aria-pressed', String(show));
     passToggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
     passToggle.setAttribute('title', show ? 'Hide password' : 'Show password');
-    passToggle.textContent = show ? '🙈' : '👁';
+    passToggle.innerHTML = show ? ico('eye-off') : ico('eye');
     inp.focus();
   });
   try {
@@ -4838,13 +4998,13 @@ function setProfileMessage(text, isError) {
 function renderHeaderProfilePic(src) {
   const pic = $('headerProfilePic');
   if (!pic) return;
-  pic.innerHTML = src ? `<img src="${esc(src)}" alt="Profile" />` : '<span class="placeholder">👤</span>';
+  pic.innerHTML = src ? `<img src="${esc(src)}" alt="Profile" />` : '<span class="placeholder">' + ico('user') + '</span>';
 }
 
 function updateProfilePreview(src) {
   const preview = $('profilePreview');
   if (!preview) return;
-  preview.innerHTML = src ? `<img src="${esc(src)}" alt="Profile" />` : '<span class="placeholder">👤</span>';
+  preview.innerHTML = src ? `<img src="${esc(src)}" alt="Profile" />` : '<span class="placeholder">' + ico('user') + '</span>';
 }
 
 function loadUserProfile() {
@@ -5365,7 +5525,7 @@ function setTransactionsState(kind, message) {
     updateDashboardTransactionsMeta(0);
     return;
   }
-  const icons = { 'empty-state': '&#128203;', 'error-state': '&#9888;&#65039;' };
+  const icons = { 'empty-state': ico('list'), 'error-state': ico('alert') };
   tbody.innerHTML = transactionPlaceholderRow(kind, icons[kind] || '', message || '');
   updateDashboardTransactionsMeta(0);
 }
@@ -5600,7 +5760,7 @@ function renderTransactionChart(transactions) {
   // while the label beside it stays a dash: the card never shows NaN or a raw undefined.
   const rows = (transactions || []).filter(row => row && row.date);
   if (!rows.length) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📊</div>' +
+    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('bars') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noMovement)}</div></div>`;
     return;
   }
@@ -5638,7 +5798,7 @@ function renderMaterialChart(materials) {
   // Same rule as the movement bars: geometry from finite numbers, text from formatQuantity.
   const rows = (materials || []).filter(row => row && row.description);
   if (!rows.length) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div>' +
+    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('box') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noData)}</div></div>`;
     return;
   }
@@ -5671,7 +5831,7 @@ function setChartError(containerId, message) {
   // drop the cached trend so a later resize cannot repaint stale data over the error
   if (containerId === 'chartMovementTrend') MOVEMENT_TREND = null;
   if (container) {
-    container.innerHTML = `<div class="error-state"><div class="error-state-icon">⚠️</div><div class="empty-state-text">${esc(message)}</div></div>`;
+    container.innerHTML = `<div class="error-state"><div class="error-state-icon">${ico('alert')}</div><div class="empty-state-text">${esc(message)}</div></div>`;
   }
 }
 
@@ -5761,7 +5921,7 @@ function renderInventoryOverview(payload) {
 
   const groups = (payload && Array.isArray(payload.groups)) ? payload.groups : [];
   if (!groups.length) {
-    list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">&#127981;</div>' +
+    list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('layers') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noData)}</div></div>`;
     updateInventoryOverviewMeta(0, 0);
     renderInventoryValuation(null);
@@ -5776,7 +5936,7 @@ function renderInventoryOverview(payload) {
 function setInventoryOverviewError(message) {
   const list = $('inventoryOverviewList');
   if (list) {
-    list.innerHTML = '<div class="error-state"><div class="error-state-icon">&#9888;&#65039;</div>' +
+    list.innerHTML = '<div class="error-state"><div class="error-state-icon">' + ico('alert') + '</div>' +
       `<div class="empty-state-text">${esc(message)}</div></div>`;
   }
   updateInventoryOverviewMeta(0, 0);
@@ -5827,7 +5987,7 @@ function renderInventoryStatus(payload) {
   updateInventoryStatusMeta(total);
 
   if (!total) {
-    donut.innerHTML = '<div class="empty-state"><div class="empty-state-icon">&#128202;</div>' +
+    donut.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('bars') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noData)}</div></div>`;
     legend.innerHTML = '';
     return;
@@ -5886,7 +6046,7 @@ function setInventoryStatusError(message) {
   const legend = $('inventoryStatusList');
   if (legend) legend.innerHTML = '';
   if (donut) {
-    donut.innerHTML = '<div class="error-state"><div class="error-state-icon">&#9888;&#65039;</div>' +
+    donut.innerHTML = '<div class="error-state"><div class="error-state-icon">' + ico('alert') + '</div>' +
       `<div class="empty-state-text">${esc(message)}</div></div>`;
   }
   updateInventoryStatusMeta(0);
@@ -5933,7 +6093,7 @@ function renderTopMaterials(materials) {
   updateTopMaterialsMeta(rows.length);
 
   if (!rows.length) {
-    list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">&#128230;</div>' +
+    list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('box') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noData)}</div></div>`;
     return;
   }
@@ -5963,7 +6123,7 @@ function renderTopMaterials(materials) {
 function setTopMaterialsError(message) {
   const list = $('topMaterialsList');
   if (list) {
-    list.innerHTML = '<div class="error-state"><div class="error-state-icon">&#9888;&#65039;</div>' +
+    list.innerHTML = '<div class="error-state"><div class="error-state-icon">' + ico('alert') + '</div>' +
       `<div class="empty-state-text">${esc(message)}</div></div>`;
   }
   updateTopMaterialsMeta(0);
@@ -6214,7 +6374,7 @@ function drawMovementTrend() {
   const mode = MOVEMENT_TREND.mode;
   const buckets = MOVEMENT_TREND.buckets;
   if (!buckets.some(bucket => bucket.received || bucket.issued)) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">&#128200;</div>' +
+    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">' + ico('up') + '</div>' +
       `<div class="empty-state-text">${esc(DASHBOARD_MESSAGES.noMovement)}</div></div>`;
     return;
   }
@@ -6444,7 +6604,7 @@ function setStockAlertsState(kind, message) {
     updateStockAlertsMeta(0);
     return;
   }
-  const icons = { 'empty-state': '&#9989;', 'error-state': '&#9888;&#65039;' };
+  const icons = { 'empty-state': ico('check'), 'error-state': ico('alert') };
   tbody.innerHTML = `<tr><td colspan="4" class="${kind}">` +
     `<div class="${kind}-icon">${icons[kind] || ''}</div>` +
     `<div class="empty-state-text">${esc(message || '')}</div>` +
@@ -6498,26 +6658,33 @@ function populateDashboardSiteFilter() {
   const select = $('dashboardSiteFilter');
   if (!select) return;
 
-  const currentSite = getProjectSiteFromUsername(SESSION_USERNAME);
+  // Resolve the account's site exactly the way the entry modules do
+  // (getDefaultSite / the server's getAllowedSitesForUser_): the username
+  // suffix matched against the site list through normaliseSite, so
+  // "Democer.popjv" selects the sheet's "POPjv". A suffix that matches no
+  // real site resolves to nothing and the account keeps "All Sites" -
+  // pinning the dashboard to a phantom site would query rows that cannot
+  // exist and the screen would say "No inventory data available."
+  const suffix = SESSION_USERNAME ? SESSION_USERNAME.split('.').pop() : '';
+  const candidates = [suffix, SESSION_USERNAME].map(normaliseSite).filter(Boolean);
+  let resolved = '';
+  for (const candidate of candidates) {
+    const hit = ALL_SITES.find(site => normaliseSite(site) === candidate);
+    if (hit) { resolved = hit; break; }
+  }
+
   // Only an .ADMIN account (suffix or Role - the same test applySiteLock
   // uses) may switch the dashboard between sites or leave it on "All Sites";
-  // any other account that has a site is pinned to its own one, exactly like
-  // the entry modules' site lock. An account with no site keeps the historic
-  // "All Sites" behaviour.
-  const canPickAll = isAdmin() || !currentSite;
-  const sites = canPickAll ? ALL_SITES : [currentSite];
+  // any other account with a resolvable site is pinned to it, exactly like
+  // the entry modules' site lock. Without a resolvable site it keeps the
+  // historic "All Sites" behaviour.
+  const canPickAll = isAdmin() || !resolved;
+  const sites = canPickAll ? ALL_SITES : [resolved];
 
   select.innerHTML = (canPickAll ? '<option value="">All Sites</option>' : '') +
     sites.map(site => `<option value="${esc(site)}">${esc(site)}</option>`).join('');
 
-  // Preselect the account's own site, matched case-insensitively against the
-  // sheet - "Democer.popjv" must select the sheet's "POPjv". An .ADMIN whose
-  // suffix is a role marker rather than a site stays on "All Sites".
-  if (currentSite) {
-    const hit = sites.find(site =>
-      String(site).trim().toLowerCase() === currentSite.toLowerCase());
-    if (hit !== undefined) select.value = hit;
-  }
+  if (resolved) select.value = resolved;
   updateDashboardFilterSummary();
 }
 
@@ -7151,7 +7318,7 @@ function paSetState(kind, message) {
   const banner = $('paState');
   if (!banner) return;
   if (!kind) { banner.style.display = 'none'; banner.textContent = ''; return; }
-  const icons = { 'empty-state': '&#128202;', 'error-state': '&#9888;&#65037;' };
+  const icons = { 'empty-state': ico('bars'), 'error-state': ico('alert') };
   banner.className = 'dashboard-state' + (kind === 'error-state' ? ' error' : '');
   banner.style.display = 'flex';
   banner.innerHTML = '<span>' + (icons[kind] || '') + '</span><strong>' + esc(message) + '</strong>';
@@ -7240,7 +7407,7 @@ function paRenderTrend() {
   const list = PA.periods.slice().sort((a, b) => String(a.PeriodKey).localeCompare(String(b.PeriodKey)));
 
   if (!list.length) {
-    host.innerHTML = paEmpty('📈', 'No accomplishment has been recorded for this project yet.');
+    host.innerHTML = paEmpty(ico('up'), 'No accomplishment has been recorded for this project yet.');
     if (meta) meta.textContent = '—';
     return;
   }
@@ -7292,7 +7459,7 @@ function paRenderBars(c) {
   const meta = $('paBarsMeta');
 
   if (!c.rows.length) {
-    host.innerHTML = paEmpty('📊', 'Add contract items to see accomplishment by item.');
+    host.innerHTML = paEmpty(ico('bars'), 'Add contract items to see accomplishment by item.');
     if (meta) meta.textContent = '—';
     return;
   }
@@ -7321,7 +7488,7 @@ function paRenderDonut(c) {
   if (!host || !figures) return;
 
   if (!c.count) {
-    host.innerHTML = paEmpty('🍩', 'No contract items yet.');
+    host.innerHTML = paEmpty(ico('pie'), 'No contract items yet.');
     figures.innerHTML = '';
     if (meta) meta.textContent = '—';
     return;
@@ -7374,7 +7541,7 @@ function paRenderItemsTable(c) {
 
   if (!c.rows.length) {
     body.innerHTML = '<tr><td colspan="21">' +
-      paEmpty('📋', 'No BOQ rows yet. Use "+ Add item" to start.') + '</td></tr>';
+      paEmpty(ico('list'), 'No BOQ rows yet. Use "+ Add item" to start.') + '</td></tr>';
     if (foot) foot.innerHTML = '';
     if (meta) meta.textContent = '—';
     return;
@@ -7387,7 +7554,7 @@ function paRenderItemsTable(c) {
 
   if (!order.length) {
     body.innerHTML = '<tr><td colspan="21">' +
-      paEmpty('🔍', 'No pay item matches the search.') + '</td></tr>';
+      paEmpty(ico('search'), 'No pay item matches the search.') + '</td></tr>';
     if (foot) foot.innerHTML = '';
     return;
   }
@@ -7429,7 +7596,7 @@ function paRenderItemsTable(c) {
       '<td>' + paStatusCell(r.status) + '</td>' +
       '<td style="white-space:nowrap">' +
         '<button type="button" class="btn small secondary" data-pa-hist="' + i + '" ' +
-          'title="Show this pay item&rsquo;s monthly history" aria-label="Monthly history">🗂️</button> ' +
+          'title="Show this pay item&rsquo;s monthly history" aria-label="Monthly history">' + ico('calendar') + '</button> ' +
         '<button type="button" class="btn small danger" data-pa-del="' + i + '" ' +
           'title="Remove this pay item" aria-label="Remove pay item">&times;</button></td>' +
     '</tr>';
@@ -7559,7 +7726,7 @@ function paRenderBoqHistory() {
                       String(a.it.ItemNo || '').localeCompare(String(b.it.ItemNo || '')));
   if (!rows.length) {
     body.innerHTML = '<tr><td colspan="8">' +
-      paEmpty('🗓️', 'No monthly record yet — type a This Period % on the BOQ table and press Save.') +
+      paEmpty(ico('calendar'), 'No monthly record yet — type a This Period % on the BOQ table and press Save.') +
       '</td></tr>';
     return;
   }
@@ -7584,7 +7751,7 @@ function paRenderReports(c) {
   if (!body) return;
 
   if (!c.rows.length) {
-    body.innerHTML = '<tr><td colspan="9">' + paEmpty('📄', 'Nothing to report yet — add a contract item first.') + '</td></tr>';
+    body.innerHTML = '<tr><td colspan="9">' + paEmpty(ico('file'), 'Nothing to report yet — add a contract item first.') + '</td></tr>';
     if (foot) foot.innerHTML = '';
     if (meta) meta.textContent = '—';
     return;
@@ -7634,7 +7801,7 @@ function paRenderHistory() {
   const list = PA.periods.slice().sort((a, b) => String(a.PeriodKey).localeCompare(String(b.PeriodKey)));
 
   if (!list.length) {
-    body.innerHTML = '<tr><td colspan="5">' + paEmpty('🗓️', 'No period has been recorded yet.') + '</td></tr>';
+    body.innerHTML = '<tr><td colspan="5">' + paEmpty(ico('calendar'), 'No period has been recorded yet.') + '</td></tr>';
     if (meta) meta.textContent = '—';
     return;
   }
@@ -7665,16 +7832,16 @@ function paRenderAnalytics(c) {
     const behind = c.rows.filter(r => r.status === 'behind').length;
     const donePct = c.totalAmount > 0 ? (c.completedAmount / c.totalAmount) * 100 : 0;
     kpis.innerHTML =
-      '<div class="kpi-card green"><div class="kpi-icon">&#128994;</div>' +
+      '<div class="kpi-card green"><div class="kpi-icon">' + ico('check') + '</div>' +
         '<div class="kpi-label">Items On Track</div>' +
         '<div class="kpi-value">' + ontrack + '</div>' +
         '<div class="kpi-change pa-up">of ' + c.count + ' contract item' + (c.count === 1 ? '' : 's') + '</div></div>' +
-      '<div class="kpi-card red"><div class="kpi-icon">&#128308;</div>' +
+      '<div class="kpi-card red"><div class="kpi-icon">' + ico('alert') + '</div>' +
         '<div class="kpi-label">Items Delayed</div>' +
         '<div class="kpi-value">' + behind + '</div>' +
         '<div class="kpi-change ' + (behind ? 'pa-down' : 'pa-flat') + '">' +
           (behind ? 'behind their planned percentage' : 'nothing behind plan') + '</div></div>' +
-      '<div class="kpi-card"><div class="kpi-icon">&#128176;</div>' +
+      '<div class="kpi-card"><div class="kpi-icon">' + ico('dollar') + '</div>' +
         '<div class="kpi-label">Contract Value Accomplished</div>' +
         '<div class="kpi-value">' + paMoneyText(c.completedAmount) + '</div>' +
         '<div class="kpi-change">' + paPctText(donePct) + '% of ' + paMoneyText(c.totalAmount) + '</div></div>';
@@ -7682,7 +7849,7 @@ function paRenderAnalytics(c) {
 
   if (contrib) {
     if (!c.rows.length) {
-      contrib.innerHTML = paEmpty('📊', 'No contract items yet.');
+      contrib.innerHTML = paEmpty(ico('bars'), 'No contract items yet.');
       if (contribMeta) contribMeta.textContent = '—';
     } else {
       const max = Math.max.apply(null, c.rows.map(r => r.weighted).concat([0.0001]));
@@ -7705,7 +7872,7 @@ function paRenderAnalytics(c) {
 
   if (valueBody) {
     if (!c.rows.length) {
-      valueBody.innerHTML = '<tr><td colspan="5">' + paEmpty('💰', 'No contract items yet.') + '</td></tr>';
+      valueBody.innerHTML = '<tr><td colspan="5">' + paEmpty(ico('dollar'), 'No contract items yet.') + '</td></tr>';
       if (valueMeta) valueMeta.textContent = '—';
     } else {
       const order = ['done', 'ontrack', 'behind', 'pending'];
@@ -8198,6 +8365,8 @@ const PDM = {
   suspensionLog: [],            // timestamped audit trail of suspension/resumption
   serverTime: null,
   calc: null,
+  planAsOf: '',                  // selected as-of date for planned progress ('' = today)
+  planGran: 'weekly',            // daily | weekly | monthly rollup in the plan card
   zoom: 1
 };
 
@@ -8993,7 +9162,15 @@ function pdmCalculate() {
 
   // The baseline of the contract scope only: another contract's baseline
   // finish can never move this contract's variance.
-  const finishes = PDM.baselines.filter(b => scoped[pdmUpper(b.ActivityId)])
+  // Baselines are historical APPROVED snapshots: compare against the latest
+  // snapshot (RecordedAt) and keep the legacy max-finish behaviour for rows
+  // recorded before snapshots existed. Never rewritten by a recalculation.
+  const scopeBase = PDM.baselines.filter(b => scoped[pdmUpper(b.ActivityId)]);
+  const stamps = scopeBase.map(b => String(b.RecordedAt || '')).filter(Boolean).sort();
+  const latestStamp = stamps.length ? stamps[stamps.length - 1] : '';
+  const finishes = (latestStamp
+      ? scopeBase.filter(b => String(b.RecordedAt || '') === latestStamp)
+      : scopeBase)
     .map(b => String(b.BaselineFinish || '')).filter(Boolean).sort();
   const baselineFinish = finishes.length ? finishes[finishes.length - 1] : '';
   const finishDate = pdmSlotDate(start, Math.max(0, projectEnd - 1), calendar, susp);
@@ -9020,6 +9197,364 @@ function pdmCalculate() {
   return out;
 }
 
+// --------------------------------------------- planned progress engine ------
+// THE one centralized engine for planned-vs-actual progress. The PDM
+// Dashboard, the Gantt, the Network Diagram and the Project Accomplishment
+// Dashboard all read this single result - no surface re-derives a percentage.
+//
+//   Activity Weight %        = Activity Budget / Total Revised Contract x 100
+//   Daily Planned Activity % = 100% / duration (working days)
+//   Daily Planned Project %  = weight / duration (working days)
+//   Cumulative Planned % (D) = sum of the daily planned project percentages
+//                              earned on WORKING days up to date D, inside
+//                              each activity's calculated ES-EF window
+//   Actual %                 = accomplished value / revised contract x 100
+//   Slippage %               = Actual % - cumulative Planned %
+//                              (negative = delayed, positive = ahead of plan)
+//
+// Working days come from pdmWorkOk(): the schedule calendar (CAL7 / CAL5) and
+// the union of the approved suspension periods, so a non-working day or a
+// suspended day never accrues progress. The ES-EF windows come from
+// pdmCalculate()'s forward pass, which already honours FS / SS / FF / SF
+// relationships with their leads and lags - daily progress follows the
+// dependency network, and any schedule change recalculates every window (and
+// with it every planned figure) in that same single pass.
+//
+// Activity budgets are the REVISED amounts of the linked pay items, so an
+// approved variation order changes the weights immediately while stored
+// baseline rows stay historical: they are only appended by the explicit
+// authorized snapshot (pdmRecordApprovedBaseline), never rewritten here.
+const PDM_PLAN_MAX_DAYS = 1000;
+
+function pdmPlanAsOfIso() {
+  const v = String(PDM.planAsOf || '');
+  return /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : pdmTodayIso();
+}
+
+// c is the pdmCalculate() result. The plan is derived from it plus the
+// read-only Project Accomplishment figures and is never written back, so the
+// accomplishment store stays untouched (module isolation preserved).
+function pdmPlanEngine(c) {
+  const plan = {
+    ok: false, asOf: pdmPlanAsOfIso(), basis: 'duration',
+    revisedTotal: 0, weightSum: 0, unallocated: 0,
+    planned: 0, actual: 0, slippage: 0, actualValue: 0,
+    plannedAtFinish: 0, completesAt100: false,
+    forecastFinish: '', behindDays: 0,
+    workingDays: 0, elapsedWorkingDays: 0,
+    items: {}, series: { daily: [], weekly: [], monthly: [] },
+    warnings: []
+  };
+  if (!c || !c.ok || !c.items.length || !c.startDate) return plan;
+  plan.ok = true;
+  const susp = c.susp || (typeof pdmSuspState === 'function' ? pdmSuspState() : null);
+  const start = c.startDate;
+  const warnings = plan.warnings;
+  const clampPct = v => Math.max(0, Math.min(100, pdmNum(v)));
+
+  // ---- 1. activity weights: revised contract basis when amounts exist ------
+  const pc = (typeof paCompute === 'function') ? paCompute() : null;
+  const hasContract = !!(pc && pc.count && pdmNum(pc.totalAmount) > 0);
+  plan.revisedTotal = hasContract ? pdmNum(pc.totalAmount) : 0;
+  const budgetOf = {}, weightOf = {}, scheduledPay = {};
+  if (hasContract) {
+    plan.basis = 'contract';
+    const rowsByKey = {};
+    pc.rows.forEach(r => { rowsByKey[pdmUpper(r.itemNo)] = r; });
+    c.items.forEach(i => {
+      const key = pdmUpper(i.src && i.src.PayItemNo);
+      const row = key ? rowsByKey[key] : null;
+      if (!row) return;
+      if (scheduledPay[key]) {
+        warnings.push('Pay item ' + key + ' is scheduled by more than one activity - its progress is counted once only.');
+        return;
+      }
+      scheduledPay[key] = true;
+      // paCompute() rows carry the REVISED amount as `amount` (VO applied).
+      budgetOf[i.id] = pdmNum(row.amount);
+      weightOf[i.id] = plan.revisedTotal > 0 ? (budgetOf[i.id] / plan.revisedTotal) * 100 : 0;
+    });
+    // Pay items with no activity keep their weight and are planned evenly over
+    // the schedule's working days, so cumulative planned still closes at 100%
+    // on the approved completion date - the gap is reported, never hidden.
+    pc.rows.forEach(r => {
+      const k = pdmUpper(r.itemNo);
+      if (k && !scheduledPay[k]) plan.unallocated += pdmNum(r.weight);
+    });
+    if (plan.unallocated > 0.05) {
+      warnings.push(pdmPctText(plan.unallocated) + '% of the revised contract has no schedule dates yet - its planned progress is spread evenly across the schedule window.');
+    }
+  } else {
+    // No contract amounts on file: duration-proportional weights keep the
+    // curve meaningful until Project Accomplishment amounts are entered.
+    const totalDur = c.items.reduce((s, i) => s + Math.max(0, i.duration), 0);
+    c.items.forEach(i => {
+      weightOf[i.id] = totalDur > 0 ? (Math.max(0, i.duration) / totalDur) * 100 : 0;
+    });
+    warnings.push('No revised contract amount on file - weights fall back to duration proportions. Enter BOQ amounts in Project Accomplishment for value-weighted planning.');
+  }
+  plan.weightSum = c.items.reduce((s, i) => s + (weightOf[i.id] || 0), 0) + plan.unallocated;
+  // ---- 2. per-activity rules and ES-EF accrual windows ---------------------
+  const finishOk = /^\d{4}-\d{2}-\d{2}$/.test(String(c.projectFinish || ''));
+  let end = finishOk ? pdmParseIso(c.projectFinish) : null;
+  if (!end && susp && susp.cutoffIso) end = pdmParseIso(susp.cutoffIso);
+  if (!end) end = pdmParseIso(plan.asOf);
+  if (!end || end.getTime() < start.getTime()) end = new Date(start.getTime());
+  const isoOf = d => { const t = new Date(start.getTime()); t.setDate(t.getDate() + d); return t; };
+  const totalDays = Math.max(1, Math.min(PDM_PLAN_MAX_DAYS,
+    Math.round((end.getTime() - start.getTime()) / 86400000) + 1));
+  plan.seriesEnd = pdmIso(isoOf(totalDays - 1));
+
+  const win = {};
+  c.items.forEach(i => {
+    const dur = Math.max(0, i.duration);
+    const weight = weightOf[i.id] || 0;
+    plan.items[i.id] = {
+      weight: weight, budget: budgetOf[i.id] || 0,
+      dailyActivity: dur > 0 ? 100 / dur : 0,      // 100% / working days
+      dailyPlan: dur > 0 ? weight / dur : 0,        // weight / working days
+      earned: 0, planned: 0,
+      actual: clampPct(i.progress),
+      slippage: 0, value: (budgetOf[i.id] || 0) * clampPct(i.progress) / 100
+    };
+    // The accrual window follows the calculated dates. Work with no finish yet
+    // (an open suspension holds it) accrues only up to the drawn window end.
+    const s0 = i.startIso ? Math.round((pdmParseIso(i.startIso).getTime() - start.getTime()) / 86400000) : null;
+    let e0 = null;
+    if (i.finishIso) e0 = Math.round((pdmParseIso(i.finishIso).getTime() - start.getTime()) / 86400000);
+    else if (s0 != null) e0 = totalDays - 1;         // held work stops at the horizon
+    win[i.id] = (s0 == null) ? null
+      : { s: Math.max(0, s0), e: Math.min(totalDays - 1, Math.max(Math.max(0, s0), e0 == null ? totalDays - 1 : e0)) };
+  });
+
+  // ---- 3. working-day calendar (calendar + suspension union), then accrue --
+  const workable = new Array(totalDays);
+  let totalWork = 0;
+  for (let d = 0; d < totalDays; d++) {
+    const ok = pdmWorkOk(isoOf(d), c.calendar || 'CAL7', susp);
+    workable[d] = ok;
+    if (ok) totalWork++;
+  }
+  plan.workingDays = totalWork;
+  plan.unallocatedDaily = totalWork > 0 ? plan.unallocated / totalWork : 0;
+
+  // Walk the horizon once: every working day inside an activity's window
+  // earns that activity's daily planned %, capped at its weight (100% of the
+  // activity), and the running project total is updated by the same delta -
+  // so a pay item or activity can never be counted twice. A snapshot at the
+  // as-of date records each activity's earned days so activity-level planned
+  // percentages stay on the activity's own scale (100% = finished).
+  const earned = {}, daysOf = {}, unlinkedEarned = { v: 0 };
+  const snapEarned = {}, snapDays = {}, snapUnlinked = { v: 0 };
+  const plannedAt = new Array(totalDays);
+  let plannedTotal = 0;
+  const asOfIdx = Math.round((pdmParseIso(plan.asOf).getTime() - start.getTime()) / 86400000);
+  const snapDailyIdx = asOfIdx < 0 ? -1 : Math.min(totalDays - 1, asOfIdx);
+  const daily = plan.series.daily;
+  for (let d = 0; d < totalDays; d++) {
+    if (workable[d]) {
+      c.items.forEach(i => {
+        const w = win[i.id], p = plan.items[i.id];
+        if (!w || d < w.s || d > w.e) return;
+        daysOf[i.id] = (daysOf[i.id] || 0) + 1;
+        const prev = earned[i.id] || 0;
+        const next = Math.min(p.weight, prev + p.dailyPlan);   // cap at the weight
+        if (next !== prev) { earned[i.id] = next; plannedTotal += next - prev; }
+      });
+      if (plan.unallocated > 0) {
+        const prev = unlinkedEarned.v;
+        const next = Math.min(plan.unallocated, prev + plan.unallocatedDaily);
+        plannedTotal += next - prev;
+        unlinkedEarned.v = next;
+      }
+    }
+    plannedAt[d] = plannedTotal;
+    daily.push({ iso: pdmIso(isoOf(d)), planned: plannedTotal, actual: null, _t: isoOf(d).getTime() });
+    if (d === snapDailyIdx) {
+      c.items.forEach(i => {
+        snapEarned[i.id] = earned[i.id] || 0;
+        snapDays[i.id] = daysOf[i.id] || 0;
+      });
+      snapUnlinked.v = unlinkedEarned.v;
+    }
+  }
+  plan.plannedAtFinish = plannedTotal;
+  // Planned / actual at the selected as-of date (a date past the finish reads
+  // the completed plan; a date before the start is zero).
+  const snapAt = asOfIdx < 0 ? 0 : plannedAt[Math.min(totalDays - 1, asOfIdx)];
+  plan.planned = Math.min(100, snapAt);
+  plan.elapsedWorkingDays = asOfIdx < 0 ? 0
+    : workable.slice(0, Math.min(totalDays, asOfIdx + 1)).filter(Boolean).length;
+  // ---- 4. actual progress: accomplished value over the revised contract -----
+  let actual = 0, actualValue = 0;
+  if (hasContract) {
+    actual = clampPct(pc.overall);                    // value-weighted, PA master
+    actualValue = pdmNum(pc.completedAmount);
+  } else {
+    c.items.forEach(i => {
+      const p = plan.items[i.id];
+      actual += (p.weight * p.actual) / 100;          // duration-weighted fallback
+      actualValue += p.value;
+    });
+    actual = clampPct(actual);
+  }
+  plan.actual = actual;
+  plan.actualValue = actualValue;
+  plan.slippage = actual - plan.planned;              // negative = delayed
+
+  // Per-activity readings at the as-of date. Two scales, deliberately:
+  //   planned  = value earned toward the PROJECT (0..weight, sums to the plan)
+  //   plannedSelf / actual / slippage = the activity's OWN 0..100 scale, so a
+  //   row's planned, progress and slippage columns are always comparable.
+  c.items.forEach(i => {
+    const p = plan.items[i.id];
+    const dur = Math.max(0, i.duration);
+    const seen = asOfIdx < 0 ? 0 : (snapDays[i.id] || 0);
+    p.earned = asOfIdx < 0 ? 0 : (snapEarned[i.id] || 0);
+    p.planned = Math.min(p.weight, p.earned);
+    p.plannedSelf = dur > 0 ? Math.min(100, (seen / dur) * 100)
+      : (i.status === 'done' ? 100 : 0);
+    p.slippage = p.actual - p.plannedSelf;
+  });
+  plan.unlinkedEarned = snapUnlinked.v;
+
+  // ---- 5. actual anchor points: recorded periods + the as-of reading -------
+  // Monthly PA records are cumulative actuals; between records the daily
+  // actual curve is interpolated, and it stops at the as-of date (the future
+  // has no actuals yet).
+  const anchors = [{ t: start.getTime(), v: 0 }];
+  const asOfT = pdmParseIso(plan.asOf).getTime();
+  const periods = (typeof PA !== 'undefined' && PA && PA.periods) ? PA.periods : [];
+  periods.forEach(pr => {
+    const parts = String(pr.PeriodKey || '').split('-');
+    const y = parseInt(parts[0], 10), m = parseInt(parts[1], 10);
+    if (!y || !m) return;
+    let t = new Date(y, m, 0).getTime();               // last day of that month
+    if (t > asOfT) t = asOfT;
+    if (t < start.getTime()) t = start.getTime();
+    anchors.push({ t: t, v: clampPct(pr.ActualPct) });
+  });
+  if (asOfT >= start.getTime()) anchors.push({ t: asOfT, v: actual });
+  anchors.sort((a, b) => a.t - b.t);
+  const uniq = [];
+  anchors.forEach(a => {                               // a later record wins
+    if (uniq.length && uniq[uniq.length - 1].t === a.t) uniq[uniq.length - 1] = a;
+    else uniq.push(a);
+  });
+  const actualAtT = t => {
+    if (!uniq.length || t < uniq[0].t) return 0;
+    if (t >= uniq[uniq.length - 1].t) return t <= asOfT ? uniq[uniq.length - 1].v : null;
+    for (let k = 1; k < uniq.length; k++) {
+      if (t <= uniq[k].t) {
+        const a = uniq[k - 1], b = uniq[k];
+        const span = b.t - a.t;
+        return span <= 0 ? b.v : a.v + ((b.v - a.v) * (t - a.t)) / span;
+      }
+    }
+    return null;
+  };
+  daily.forEach(row => {
+    row.actual = row._t > asOfT ? null : actualAtT(row._t);
+    delete row._t;
+  });
+  // ---- 6. weekly / monthly rollups (cumulative, period deltas, slippage) ---
+  const bucketOf = (iso, gran) => {
+    const dt = new Date(iso + 'T00:00:00');
+    if (gran === 'monthly') return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0');
+    const day = (dt.getDay() + 6) % 7;                 // Monday = 0
+    const mon = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() - day);
+    return mon.getFullYear() + '-' + String(mon.getMonth() + 1).padStart(2, '0') + '-' +
+           String(mon.getDate()).padStart(2, '0');
+  };
+  const MON_ABBR = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const labelOf = (key, gran) => {
+    const parts = String(key).split('-');
+    if (gran === 'monthly') return MON_ABBR[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
+    return MON_ABBR[parseInt(parts[1], 10) - 1] + ' ' + parseInt(parts[2], 10);
+  };
+  ['weekly', 'monthly'].forEach(gran => {
+    const out = [], byKey = {};
+    daily.forEach((row, idx) => {
+      const key = bucketOf(row.iso, gran);
+      if (!byKey[key]) { byKey[key] = { key: key, s: idx, e: idx }; out.push(byKey[key]); }
+      else byKey[key].e = idx;
+    });
+    let prevP = 0, prevA = null;
+    plan.series[gran] = out.map(b => {
+      const planned = plannedAt[b.e];
+      const realIdx = Math.max(b.s, Math.min(b.e, asOfIdx));
+      const actualV = (asOfIdx < 0 || b.s > asOfIdx) ? null
+        : actualAtT(new Date(daily[realIdx].iso + 'T00:00:00').getTime());
+      const row = {
+        label: labelOf(b.key, gran), iso: daily[b.e].iso,
+        planned: planned, plannedDelta: planned - prevP,
+        actual: actualV,
+        actualDelta: (actualV != null && prevA != null) ? actualV - prevA : null,
+        slippage: actualV != null ? actualV - planned : null
+      };
+      prevP = planned;
+      if (actualV != null) prevA = actualV;
+      return row;
+    });
+  });
+  // daily rows carry the same five readings: label, planned (period and
+  // cumulative), actual (period and cumulative) and slippage
+  let prevP = 0, prevA = null;
+  plan.series.daily = daily.map(row => {
+    const d = {
+      label: row.iso, iso: row.iso, planned: row.planned,
+      plannedDelta: row.planned - prevP, actual: row.actual,
+      actualDelta: (row.actual != null && prevA != null) ? row.actual - prevA : null,
+      slippage: row.actual != null ? row.actual - row.planned : null
+    };
+    prevP = row.planned;
+    if (row.actual != null) prevA = row.actual;
+    return d;
+  });
+  // ---- 7. forecast + validations -------------------------------------------
+  const dateAtIdx = d => isoOf(Math.max(0, Math.min(totalDays - 1, d)));
+  let pi = totalDays - 1;
+  for (let d = 0; d < totalDays; d++) { if (plannedAt[d] >= actual - 1e-9) { pi = d; break; } }
+  // Days between the date the plan expects this much work and the as-of date:
+  // positive = behind the plan (finish slips), negative = ahead of it.
+  plan.behindDays = Math.round((asOfT - dateAtIdx(pi).getTime()) / 86400000);
+  if (c.pending) plan.forecastFinish = PDM_SUSP_PENDING;
+  else if (finishOk) {
+    const f = new Date(end.getTime());
+    f.setDate(f.getDate() + plan.behindDays);
+    plan.forecastFinish = pdmIso(f);
+  } else plan.forecastFinish = '';
+  // Validation: the planned curve must close at 100% on the scheduled finish.
+  plan.completesAt100 = Math.abs(plan.plannedAtFinish - 100) <= 0.5;
+  if (!plan.completesAt100) {
+    warnings.push('Cumulative planned reaches ' + pdmPctText(plan.plannedAtFinish) +
+      '% at the scheduled finish (expected 100%) - check the weights and schedule dates.');
+  }
+  if (Math.abs(plan.weightSum - 100) > 0.5) {
+    warnings.push('Activity weights total ' + pdmPctText(plan.weightSum) + '% of the revised contract.');
+  }
+  // Validation: every activity is capped at its weight (100% of itself) and
+  // its actual progress never exceeds 100%.
+  plan.capsOk = c.items.every(i => {
+    const p = plan.items[i.id];
+    return p.planned <= p.weight + 1e-6 && p.actual <= 100;
+  });
+  if (!plan.capsOk) warnings.push('An activity exceeds its weight or 100% - progress is capped.');
+  return plan;
+}
+
+// The accessor every surface calls. Deliberately NOT cached: one pass over the
+// schedule horizon is cheap, and recomputing guarantees the plan can never go
+// stale after a PA save, a schedule edit or an as-of date change - one
+// engine, always current.
+function pdmPlan(c) {
+  return pdmPlanEngine(c || PDM.calc || pdmCalculate());
+}
+
+
+
+
+
 // ------------------------------------------------------------- rendering ---
 function pdmShowErrors(ids, calc) {
   const list = (calc && calc.errors) || [];
@@ -9028,7 +9563,7 @@ function pdmShowErrors(ids, calc) {
     if (!el) return;
     if (!list.length) { el.style.display = 'none'; el.innerHTML = ''; return; }
     el.style.display = 'flex';
-    el.innerHTML = '<strong>&#9888;&#65039;</strong><span>' + esc(list.join('   •   ')) + '</span>';
+    el.innerHTML = '<strong>' + ico('alert') + '</strong><span>' + esc(list.join('   •   ')) + '</span>';
   });
 }
 
@@ -9045,17 +9580,17 @@ function pdmRenderKpis(c) {
   const active = c.items.filter(i => i.status === 'active').length;
   const fresh = c.items.filter(i => i.status === 'notstarted').length;
   const cards = [
-    { i: '&#128203;', l: 'Total Activities', v: String(c.items.length), n: 'in this schedule', c: '' },
-    { i: '&#128197;', l: 'Project Duration', v: c.totalDuration ? c.totalDuration + ' days' : '\u2014',
+    { i: ico('list'), l: 'Total Activities', v: String(c.items.length), n: 'in this schedule', c: '' },
+    { i: ico('calendar'), l: 'Project Duration', v: c.totalDuration ? c.totalDuration + ' days' : '\u2014',
       n: c.projectStart + ' \u2192 ' + (c.projectFinish || '\u2014'), c: '' },
-    { i: '&#128293;', l: 'Critical Activities', v: String(c.criticalCount),
+    { i: ico('zap'), l: 'Critical Activities', v: String(c.criticalCount),
       n: c.items.length ? Math.round((c.criticalCount / c.items.length) * 100) + '% of activities' : '\u2014', c: 'red' },
-    { i: '&#127919;', l: 'Critical Path Duration', v: c.criticalDuration ? c.criticalDuration + ' days' : '\u2014',
+    { i: ico('target'), l: 'Critical Path Duration', v: c.criticalDuration ? c.criticalDuration + ' days' : '\u2014',
       n: 'longest chain', c: 'red' },
-    { i: '&#9989;', l: 'Activities Completed', v: String(done), n: 'finished or 100%', c: 'green' },
-    { i: '&#9203;', l: 'Activities In Progress', v: String(active), n: 'started, not finished', c: 'yellow' },
-    { i: '&#11036;', l: 'Activities Not Started', v: String(fresh), n: 'no actuals yet', c: '' },
-    { i: '&#128208;', l: 'Total Float', v: c.items.length ? c.totalFloat + ' days' : '\u2014',
+    { i: ico('check'), l: 'Activities Completed', v: String(done), n: 'finished or 100%', c: 'green' },
+    { i: ico('clock'), l: 'Activities In Progress', v: String(active), n: 'started, not finished', c: 'yellow' },
+    { i: ico('square'), l: 'Activities Not Started', v: String(fresh), n: 'no actuals yet', c: '' },
+    { i: ico('move'), l: 'Total Float', v: c.items.length ? c.totalFloat + ' days' : '\u2014',
       n: 'project float (min)', c: 'purple' }
   ];
   host.innerHTML = cards.map(k =>
@@ -9074,7 +9609,7 @@ function pdmRenderCritical(c) {
   const rows = c.items.filter(i => i.critical);
   if (!rows.length) {
     body.innerHTML = '<tr><td colspan="7">' +
-      pdmEmpty('&#128293;', c.ok ? 'No critical activities — every activity has float.'
+      pdmEmpty(ico('zap'), c.ok ? 'No critical activities — every activity has float.'
         : pdmEmptyScheduleText('No schedule to show.', c)) +
       '</td></tr>';
     if (meta) meta.textContent = '\u2014';
@@ -9106,7 +9641,7 @@ function pdmRenderStatus(c) {
   ];
   const total = c.items.length;
   if (!total) {
-    host.innerHTML = pdmEmpty('&#128202;', pdmEmptyScheduleText('No activities yet.', c));
+    host.innerHTML = pdmEmpty(ico('bars'), pdmEmptyScheduleText('No activities yet.', c));
     if (meta) meta.textContent = '\u2014';
     return;
   }
@@ -9131,7 +9666,7 @@ function pdmRenderSummary(c) {
   const meta = $('pdmDashSumMeta');
   if (!host) return;
   if (!c.items.length) {
-    host.innerHTML = pdmEmpty('&#128202;', pdmEmptyScheduleText('Enter activities to build the schedule summary.', c));
+    host.innerHTML = pdmEmpty(ico('bars'), pdmEmptyScheduleText('Enter activities to build the schedule summary.', c));
     if (meta) meta.textContent = '\u2014';
     return;
   }
@@ -9139,6 +9674,18 @@ function pdmRenderSummary(c) {
   const path = c.critical.length ? c.critical.join(' \u2192 ') : '\u2014';
   const variance = c.varianceDays;
   const hasBase = !!c.baselineFinish;
+  // The centralized engine's readings for this as-of date.
+  const p = pdmPlan(c);
+  const planFigs =
+    '<div class="pa-figure"><span>Planned Accomplishment (as of ' + p.asOf + ')</span><strong>' +
+      pdmPctText(p.planned) + '%</strong></div>' +
+    '<div class="pa-figure"><span>Actual Accomplishment</span><strong>' +
+      pdmPctText(p.actual) + '%</strong></div>' +
+    '<div class="pa-figure"><span>Schedule Slippage</span><strong class="' +
+      (p.slippage < 0 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+      (p.slippage > 0 ? '+' : '') + pdmPctText(p.slippage) + '%</strong></div>' +
+    '<div class="pa-figure"><span>Forecast Completion</span><strong>' +
+      esc(p.forecastFinish || '\u2014') + '</strong></div>';
   host.innerHTML =
     '<div class="pa-figure accent"><span>Project Start Date</span><strong>' + esc(c.projectStart) + '</strong></div>' +
     '<div class="pa-figure"><span>Project Finish Date</span><strong>' + esc(c.projectFinish || '\u2014') + '</strong></div>' +
@@ -9154,7 +9701,8 @@ function pdmRenderSummary(c) {
       (c.pending ? PDM_SUSP_PENDING : hasBase ? c.delayDays + ' days' : '\u2014') + '</strong></div>' +
     '<div class="pa-figure remaining"><span>Critical Path</span>' +
       '<strong style="white-space:normal;text-align:right" title="' + esc(path) + '">' +
-      esc(c.pending ? 'Pending Resumption / Subject to Recalculation' : path) + '</strong></div>';
+      esc(c.pending ? 'Pending Resumption / Subject to Recalculation' : path) + '</strong></div>' +
+    planFigs;
 }
 
 // -------------------------------------------------------- network diagram ---
@@ -9181,7 +9729,7 @@ function pdmNodeCell(label, v) {
     ': <b class="' + (pend ? 'pend' : '') + '">' + esc(pend ? 'Pending' : text) + '</b></span>';
 }
 
-function pdmNodeHtml(item, x, y) {
+function pdmNodeHtml(item, x, y, plan) {
   const cls = ['pdm-node'];
   if (item.critical) cls.push('critical');
   if (item.held) cls.push('hold');
@@ -9205,6 +9753,12 @@ function pdmNodeHtml(item, x, y) {
     '</div>' +
     '<div class="pdm-node-foot"><span>Float: <b>' + item.float + '</b></span>' +
       '<span>' + item.duration + ' d</span></div>' +
+    (plan && plan.items && plan.items[item.id]
+      ? '<div class="pdm-node-plan" title="Progress engine: weight of the revised contract, planned to the as-of date, actual progress">' +
+        '<span>W <b>' + pdmPctText(plan.items[item.id].weight) + '%</b></span>' +
+        '<span>Plan <b>' + pdmPctText(plan.items[item.id].plannedSelf) + '%</b></span>' +
+        '<span>Act <b>' + pdmPctText(plan.items[item.id].actual) + '%</b></span></div>'
+      : '') +
     '<div class="pdm-node-progress"><i style="width:' + item.progress + '%"></i></div>' +
   '</div>';
 }
@@ -9214,12 +9768,12 @@ function pdmRenderNetwork(canvasId, c) {
   if (!canvas) return;
   if (!c.items.length) {
     canvas.style.width = ''; canvas.style.height = '';
-    canvas.innerHTML = pdmEmpty('&#128302;', pdmEmptyScheduleText('No activities yet — add some in Activity Data Entry.', c));
+    canvas.innerHTML = pdmEmpty(ico('share'), pdmEmptyScheduleText('No activities yet — add some in Activity Data Entry.', c));
     return;
   }
   if (!c.ok) {
     canvas.style.width = ''; canvas.style.height = '';
-    canvas.innerHTML = pdmEmpty('&#9888;&#65039;',
+    canvas.innerHTML = pdmEmpty(ico('alert'),
       (c.errors && c.errors[0]) || 'Fix the errors above before the network can be drawn.');
     return;
   }
@@ -9249,7 +9803,8 @@ function pdmRenderNetwork(canvasId, c) {
   const width = PAD * 2 + (maxRank + 1) * NODE_W + maxRank * GAP_X;
   const height = PAD * 2 + Math.max(1, rows) * NODE_H + Math.max(0, rows - 1) * GAP_Y;
 
-  const nodes = c.items.map(i => pdmNodeHtml(i, pos[i.id].x, pos[i.id].y)).join('');
+  const plan = pdmPlan(c);
+  const nodes = c.items.map(i => pdmNodeHtml(i, pos[i.id].x, pos[i.id].y, plan)).join('');
 
   const paths = [];
   c.items.forEach(i => {
@@ -9284,14 +9839,15 @@ function pdmRenderGantt(boxId, c, pxPerDay) {
   if (!box) return;
   const meta = boxId === 'pdmGanttBox' ? $('pdmGanttMeta') : $('pdmDashGanttMeta');
   const px = Math.max(2, pdmNum(pxPerDay) || 10);
+  const plan = pdmPlan(c);
 
   if (!c.items.length) {
-    box.innerHTML = pdmEmpty('&#128197;', pdmEmptyScheduleText('No activities yet — add some in Activity Data Entry.', c));
+    box.innerHTML = pdmEmpty(ico('calendar'), pdmEmptyScheduleText('No activities yet — add some in Activity Data Entry.', c));
     if (meta) meta.textContent = '\u2014';
     return;
   }
   if (!c.ok) {
-    box.innerHTML = pdmEmpty('&#9888;&#65039;',
+    box.innerHTML = pdmEmpty(ico('alert'),
       (c.errors && c.errors[0]) || 'Fix the errors above before the Gantt can be drawn.');
     if (meta) meta.textContent = '\u2014';
     return;
@@ -9308,7 +9864,10 @@ function pdmRenderGantt(boxId, c, pxPerDay) {
   const span = Math.min(Math.max(1, calDays), 800);
   const trackW = span * px;
   if (meta) meta.textContent = c.items.length + ' activities \u00b7 ' + days + ' days' +
-    (span > days ? ' \u00b7 ' + span + '-day calendar axis' : '');
+    (span > days ? ' \u00b7 ' + span + '-day calendar axis' : '') +
+    (plan.ok ? ' \u00b7 Planned ' + pdmPctText(plan.planned) + '% \u00b7 Actual ' +
+      pdmPctText(plan.actual) + '% \u00b7 Slippage ' +
+      (plan.slippage > 0 ? '+' : '') + pdmPctText(plan.slippage) + '%' : '');
 
   // ---- ruler ------------------------------------------------------------
   const start = c.startDate;
@@ -9351,14 +9910,20 @@ function pdmRenderGantt(boxId, c, pxPerDay) {
     if (i.held) cls.push('hold');
     else if (i.status === 'done') cls.push('done');
     else if (i.critical) cls.push('critical');
+    const pp = plan.items ? plan.items[i.id] : null;
     lanes.push('<div class="pdm-gantt-lane">' +
       '<div class="' + cls.join(' ') + '" style="left:' + geom.left + 'px;width:' + geom.width + 'px" ' +
         'title="' + esc(i.id + ' · ' + i.duration + ' days\nStart ' + i.startDate +
           '\nFinish ' + i.finishDate + '\nProgress ' + i.progress + '%' +
+          (pp ? '\nWeight ' + pdmPctText(pp.weight) + '% of the revised contract' +
+                 '\nPlanned ' + pdmPctText(pp.plannedSelf) + '% \u00b7 Actual ' + pdmPctText(pp.actual) + '%' +
+                 '\nSlippage ' + (pp.slippage > 0 ? '+' : '') + pdmPctText(pp.slippage) + '%' : '') +
           (i.critical ? '\nCRITICAL PATH' : '') +
           (i.held ? '\nON HOLD - pending resumption' : '') +
           (i.preds.length ? '\nDepends on ' + i.preds.map(p => p.id).join(', ') : '')) + '">' +
         '<i style="width:' + i.progress + '%"></i>' +
+        (pp ? '<u style="left:' + Math.max(0, Math.min(100, pp.plannedSelf || 0)).toFixed(1) + '%" ' +
+              'title="Planned ' + pdmPctText(pp.plannedSelf || 0) + '% as of ' + plan.asOf + '"></u>' : '') +
         '<em>' + (i.duration >= 2 ? esc(i.id) : '') + '</em>' +
       '</div></div>');
   });
@@ -9451,7 +10016,7 @@ function pdmRenderTable(c) {
 
   if (!c.items.length) {
     body.innerHTML = '<tr><td colspan="13">' +
-      pdmEmpty('&#128203;', pdmEmptyScheduleText('No activities yet. Use the form above to add your first one.', c)) +
+      pdmEmpty(ico('list'), pdmEmptyScheduleText('No activities yet. Use the form above to add your first one.', c)) +
       '</td></tr>';
     if (foot) foot.innerHTML = '';
     if (meta) meta.textContent = '\u2014';
@@ -9466,6 +10031,7 @@ function pdmRenderTable(c) {
 
   if (meta) meta.textContent = c.items.length + ' activities \u00b7 ' +
     (c.ok ? c.totalDuration + ' days' : 'invalid network');
+  const plan = pdmPlan(c);
 
   body.innerHTML = c.items.map((i, idx) => {
     const preds = i.preds.length
@@ -9478,6 +10044,7 @@ function pdmRenderTable(c) {
       : '\u2014';
     const lag = i.preds.length ? i.preds.reduce((s, p) => s + p.lag, 0) : 0;
     const invalid = !c.ok || bad[i.id];
+    const pp = plan.items[i.id] || { weight: 0, planned: 0, slippage: 0 };
     return '<tr data-pdm-idx="' + idx + '"' + (invalid ? ' class="bad"' : '') + '>' +
       '<td><strong>' + esc(i.id) + '</strong>' +
         (i.held ? ' <span class="pdm-chip hold">ON HOLD</span>' : '') + '</td>' +
@@ -9497,6 +10064,11 @@ function pdmRenderTable(c) {
         ? (i.critical ? '<span class="pdm-chip critical">Yes</span>'
                       : '<span class="pdm-chip normal">No</span>')
         : '\u2014') + '</td>' +
+      '<td class="num" title="Activity budget / revised contract amount">' + pdmPctText(pp.weight) + '%</td>' +
+      '<td class="num" title="Planned progress (own %) as of ' + plan.asOf + '">' + pdmPctText(pp.plannedSelf) + '%</td>' +
+      '<td class="num" title="Actual minus planned - negative means delayed">' +
+        '<span class="' + (pp.slippage < -0.05 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+        (pp.slippage > 0 ? '+' : '') + pdmPctText(pp.slippage) + '%</span></td>' +
       '<td class="num"><input class="pdm-input num" type="number" min="0" max="100" step="1" ' +
         'data-f="ProgressPct" value="' + i.progress + '" /></td>' +
       '<td><button type="button" class="btn small danger" data-pdm-del="' + idx + '" ' +
@@ -9510,15 +10082,22 @@ function pdmRenderTable(c) {
 }
 
 function pdmTableFootHtml(c) {
+  const p = pdmPlan(c);
   return '<tr>' +
     '<td colspan="2">TOTALS</td>' +
+    '<td></td>' +
     '<td class="num">' + c.items.reduce((s, i) => s + i.duration, 0) + '</td>' +
     '<td colspan="3"></td>' +
     '<td class="num">' + esc(c.projectStart) + '</td>' +
     '<td class="num">' + esc(c.projectFinish || '\u2014') + '</td>' +
     '<td class="num">' + (c.ok ? c.totalFloat : '\u2014') + '</td>' +
     '<td>' + (c.ok ? c.criticalCount + ' critical' : '\u2014') + '</td>' +
-    '<td class="num">' + c.criticalDuration + '</td>' +
+    '<td class="num" title="Sum of activity weights">' + pdmPctText(p.weightSum) + '%</td>' +
+    '<td class="num" title="Planned cumulative as of the selected date">' + pdmPctText(p.planned) + '%</td>' +
+    '<td class="num" title="Actual minus planned"><span class="' +
+      (p.slippage < -0.05 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+      (p.slippage > 0 ? '+' : '') + pdmPctText(p.slippage) + '%</span></td>' +
+    '<td class="num" title="Actual accomplishment (project)">' + pdmPctText(p.actual) + '%</td>' +
     '<td></td>' +
   '</tr>';
 }
@@ -9532,6 +10111,7 @@ function pdmRenderLive() {
   pdmRenderCritical(c);
   pdmRenderStatus(c);
   pdmRenderSummary(c);
+  pdmRenderPlan(c);
   pdmRenderNetwork('pdmDashNet', c);
   pdmRenderNetwork('pdmNetCanvas', c);
   const zoom = pdmNum($('pdmGanttZoom') && $('pdmGanttZoom').value) || 10;
@@ -9545,13 +10125,15 @@ function pdmRenderLive() {
 }
 
 function pdmPatchTable(c) {
+  const plan = pdmPlan(c);
   document.querySelectorAll('#pdmTableBody tr[data-pdm-idx]').forEach(tr => {
     const idx = Number(tr.getAttribute('data-pdm-idx'));
     const i = c.items[idx];
     const tds = tr.querySelectorAll('td');
-    if (!i || tds.length < 13) return;
+    if (!i || tds.length < 16) return;
     // Column order: ID, Activity, Pay Item, Duration, Predecessor, Relationship,
-    // Lag, Start, Finish, Float, Critical, Progress, delete.
+    // Lag, Start, Finish, Float, Critical, Weight, Planned, Slippage,
+    // Progress, delete.
     tds[0].innerHTML = '<strong>' + esc(i.id) + '</strong>' +
       (i.held ? ' <span class="pdm-chip hold">ON HOLD</span>' : '');
     tds[7].textContent = i.startDate;
@@ -9562,6 +10144,11 @@ function pdmPatchTable(c) {
       ? (i.critical ? '<span class="pdm-chip critical">Yes</span>'
                     : '<span class="pdm-chip normal">No</span>')
       : '\u2014';
+    const pp = plan.items[i.id] || { weight: 0, planned: 0, slippage: 0 };
+    tds[11].textContent = pdmPctText(pp.weight) + '%';
+    tds[12].textContent = pdmPctText(pp.plannedSelf == null ? 0 : pp.plannedSelf) + '%';
+    tds[13].innerHTML = '<span class="' + (pp.slippage < -0.05 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+      (pp.slippage > 0 ? '+' : '') + pdmPctText(pp.slippage) + '%</span>';
     tr.classList.toggle('bad', !c.ok);
   });
   const foot = $('pdmTableFoot');
@@ -9609,6 +10196,164 @@ function pdmLoadSample() {
 
 
 
+// ----------------------------------------------------- plan card rendering ---
+// Paints the Planned vs Actual card from pdmPlan() only - the same engine the
+// Gantt, the Network Diagram and the accomplishment card read. Nothing is
+// re-derived here.
+function pdmRenderPlan(c) {
+  if (!$('pdmPlanCard')) return;
+  const p = pdmPlan(c);
+  const kpis = $('pdmPlanKpis'), meta = $('pdmPlanMeta');
+  const chartMeta = $('pdmPlanChartMeta'), chart = $('pdmPlanChart');
+  const body = $('pdmPlanBody'), warn = $('pdmPlanWarnings');
+  const asOfInput = $('pdmPlanAsOf'), granSel = $('pdmPlanGran');
+  if (asOfInput && document.activeElement !== asOfInput) asOfInput.value = p.asOf;
+  if (granSel) granSel.value = PDM.planGran || 'weekly';
+
+  if (!p.ok) {
+    if (meta) meta.textContent = '\u2014';
+    if (kpis) kpis.innerHTML = '';
+    if (chartMeta) chartMeta.textContent = '\u2014';
+    if (chart) chart.innerHTML = pdmEmpty(ico('calendar'),
+      pdmEmptyScheduleText('Enter activities to build the planned progress curve.', c));
+    if (body) body.innerHTML = '<tr><td colspan="6">' +
+      pdmEmpty(ico('bars'), pdmEmptyScheduleText('No schedule to show.', c)) + '</td></tr>';
+    if (warn) warn.innerHTML = '';
+    return;
+  }
+
+  const fmt = v => (v > 0 ? '+' : '') + pdmPctText(v) + '%';
+  const slipCls = p.slippage < -0.05 ? 'red' : (p.slippage > 0.05 ? 'green' : 'yellow');
+  const forecastNote = p.behindDays > 0
+    ? p.behindDays + ' day' + (p.behindDays === 1 ? '' : 's') + ' behind the plan'
+    : p.behindDays < 0
+      ? Math.abs(p.behindDays) + ' day' + (p.behindDays === -1 ? '' : 's') + ' ahead of the plan'
+      : 'exactly on plan';
+  const cards = [
+    { i: ico('calendar'), l: 'Planned Accomplishment', v: pdmPctText(p.planned) + '%',
+      n: 'cumulative as of ' + p.asOf, c: '' },
+    { i: ico('dollar'), l: 'Actual Accomplishment', v: pdmPctText(p.actual) + '%',
+      n: p.revisedTotal > 0
+        ? paMoneyText(p.actualValue) + ' of ' + paMoneyText(p.revisedTotal)
+        : 'weighted from activity progress', c: 'green' },
+    { i: ico('down'), l: 'Schedule Slippage', v: fmt(p.slippage),
+      n: p.slippage < -0.05 ? 'behind the plan - delayed'
+        : p.slippage > 0.05 ? 'ahead of schedule' : 'on plan', c: slipCls },
+    { i: ico('up'), l: 'Forecast Completion', v: p.forecastFinish || '\u2014',
+      n: forecastNote, c: p.behindDays > 0 ? 'red' : 'green' }
+  ];
+  if (kpis) kpis.innerHTML = cards.map(k =>
+    '<div class="kpi-card ' + k.c + '">' +
+      '<div class="kpi-icon">' + k.i + '</div>' +
+      '<div class="kpi-label">' + esc(k.l) + '</div>' +
+      '<div class="kpi-value">' + esc(k.v) + '</div>' +
+      '<div class="kpi-change">' + esc(k.n) + '</div>' +
+    '</div>').join('');
+  if (meta) meta.textContent = 'as of ' + p.asOf + ' \u00b7 ' +
+    (p.basis === 'contract' ? 'revised contract weights' : 'duration weights') +
+    ' \u00b7 ' + p.elapsedWorkingDays + ' of ' + p.workingDays + ' working days elapsed';
+
+  // ---- rollup table: daily / weekly / monthly planned vs actual -----------
+  const gran = p.series[PDM.planGran] ? PDM.planGran : 'weekly';
+  const rows = p.series[gran] || [];
+  if (chartMeta) chartMeta.textContent = rows.length + ' ' + gran + ' point' + (rows.length === 1 ? '' : 's');
+  if (body) {
+    body.innerHTML = rows.length ? rows.map(r =>
+      '<tr>' +
+        '<td>' + esc(r.label) + '</td>' +
+        '<td class="num">' + pdmPctText(r.plannedDelta) + '%</td>' +
+        '<td class="num">' + (r.actualDelta == null ? '\u2014' : pdmPctText(r.actualDelta) + '%') + '</td>' +
+        '<td class="num">' + pdmPctText(r.planned) + '%</td>' +
+        '<td class="num">' + (r.actual == null ? '\u2014' : pdmPctText(r.actual) + '%') + '</td>' +
+        '<td class="num">' + (r.slippage == null ? '\u2014'
+          : '<span class="' + (r.slippage < 0 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+            (r.slippage > 0 ? '+' : '') + pdmPctText(r.slippage) + '%</span>') + '</td>' +
+      '</tr>').join('')
+      : '<tr><td colspan="6">' + pdmEmpty(ico('bars'), 'No periods to show yet.') + '</td></tr>';
+  }
+
+  // ---- validation report ---------------------------------------------------
+  if (warn) warn.innerHTML = p.warnings.length
+    ? p.warnings.map(w => '<div class="pdm-plan-warn">' + ico('alert') +
+        '<span>' + esc(w) + '</span></div>').join('')
+    : '<div class="pdm-plan-ok">' + ico('check') + '<span>Validation passed \u2014 weights total ' +
+      pdmPctText(p.weightSum) + '%, planned closes at ' + pdmPctText(p.plannedAtFinish) + '% on ' +
+      esc(c.projectFinish || '\u2014') + ', every activity stays capped at its weight, ' +
+      'and no pay item is counted twice.</span></div>';
+  pdmRenderPlanChart(p, chart, gran);
+}
+// The S-curve: cumulative planned across the whole horizon, actual up to the
+// as-of date (recorded periods + today, interpolated between records).
+function pdmRenderPlanChart(p, host, gran) {
+  if (!host) return;
+  const rows = (p.series && p.series[gran]) || [];
+  if (!rows.length) {
+    host.innerHTML = pdmEmpty(ico('bars'), 'No planned progress to plot yet.');
+    return;
+  }
+  const W = Math.max(320, host.clientWidth || 640);
+  const H = Math.max(200, host.clientHeight || 260);
+  const padL = 46, padR = 16, padT = 14, padB = 30;
+  const iw = Math.max(40, W - padL - padR), ih = Math.max(40, H - padT - padB);
+  const n = rows.length;
+  const x = i => (n === 1 ? padL + iw / 2 : padL + (i * iw) / (n - 1));
+  const y = v => padT + ih * (1 - Math.max(0, Math.min(100, pdmNum(v))) / 100);
+  const grid = [0, 25, 50, 75, 100].map(t =>
+    '<line class="pa-grid-line' + (t === 0 || t === 100 ? '' : ' soft') + '" x1="' + padL + '" y1="' + y(t) +
+      '" x2="' + (W - padR) + '" y2="' + y(t) + '"></line>' +
+    '<text class="pa-axis-text" x="' + (padL - 8) + '" y="' + (y(t) + 3.5) + '" text-anchor="end">' + t + '%</text>'
+  ).join('');
+  const step = Math.max(1, Math.ceil(n / 8));
+  const labels = rows.map((r, i) =>
+    (i % step === 0 || i === n - 1)
+      ? '<text class="pa-axis-text" x="' + x(i) + '" y="' + (H - 8) + '" text-anchor="middle">' +
+        esc(String(r.label).slice(0, 11)) + '</text>'
+      : '').join('');
+  const planned = rows.map((r, i) => x(i) + ',' + y(r.planned)).join(' ');
+  let lastA = -1;
+  rows.forEach((r, i) => { if (r.actual != null) lastA = i; });
+  const actualPts = [];
+  for (let i = 0; i <= lastA; i++) actualPts.push(x(i) + ',' + y(rows[i].actual));
+  const actualLine = actualPts.length > 1
+    ? '<polyline class="pa-line-actual" points="' + actualPts.join(' ') + '"></polyline>'
+    : actualPts.length === 1
+      ? '<circle class="pa-dot-actual" cx="' + x(lastA) + '" cy="' + y(rows[lastA].actual) + '" r="3.6"></circle>'
+      : '';
+  host.innerHTML =
+    '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+      'aria-label="Planned versus actual cumulative accomplishment by ' + gran + ' period">' +
+      grid + labels +
+      '<polyline class="pa-line-planned" points="' + planned + '"></polyline>' +
+      actualLine +
+    '</svg>';
+}
+
+// ------------------------------------------------------- baseline snapshot ---
+// The ONLY way baseline rows are ever written: an explicit, authorized action
+// after a revision has been approved. pdmCalculate() - and therefore every
+// planned figure this engine produces - never touches stored baselines, so
+// historical snapshots are preserved and the variance keeps comparing against
+// the approved plan. Activity weights, by contrast, always follow the CURRENT
+// revised contract amounts (variation orders apply immediately).
+function pdmRecordApprovedBaseline() {
+  const c = PDM.calc || pdmCalculate();
+  if (!c.ok || !c.items.length) {
+    pdmNote('pdmGanttMsg', 'A valid schedule is required before a baseline can be recorded.', true);
+    return false;
+  }
+  const stamp = new Date().toISOString();
+  c.items.forEach(i => {
+    PDM.baselines.push({ ActivityId: i.id, BaselineStart: i.startIso || '',
+                         BaselineFinish: i.finishIso || '', RecordedAt: stamp });
+  });
+  pdmWriteLocalBaselines();
+  pdmPersist();
+  pdmRenderAll();
+  pdmNote('pdmGanttMsg', 'Approved baseline recorded for ' + c.items.length + ' activities on ' +
+    pdmTodayIso() + '. Earlier baseline snapshots are preserved.');
+  return true;
+}
+
 // ---------------------------------------------------------------- fan-out ---
 // One entry point: every PDM surface repaints from the single calculation.
 function pdmRenderAll() {
@@ -9627,6 +10372,7 @@ function pdmRenderAll() {
   pdmRenderCritical(c);
   pdmRenderStatus(c);
   pdmRenderSummary(c);
+  pdmRenderPlan(c);
   pdmRenderNetwork('pdmDashNet', c);
   pdmRenderNetwork('pdmNetCanvas', c);
 
@@ -9755,6 +10501,7 @@ function pdmRenderScheduleStatusCard(c) {
   if (!host) return;
   const meta = $('paScheduleStatusMeta');
   const pc = (typeof paCompute === 'function') ? paCompute() : null;
+  const plan = (typeof pdmPlan === 'function') ? pdmPlan(c) : null;
   if (!c.items.length) {
     host.innerHTML = '<div class="help">No PDM schedule has been recorded for this project yet.</div>' +
       (((typeof canOpenView !== 'function') || canOpenView('pdmDashboard'))
@@ -9786,8 +10533,8 @@ function pdmRenderScheduleStatusCard(c) {
 
   host.innerHTML =
     '<div class="pa-hbars">' +
-      bar('Planned Accomplishment % (Project Accomplishment store)',
-          pc && pc.count ? pc.plannedOverall : null, '') +
+      bar('Planned Accomplishment % (schedule progress engine)',
+          plan && plan.ok ? plan.planned : (pc && pc.count ? pc.plannedOverall : null), '') +
       bar('Actual Accomplishment % (Project Accomplishment store)',
           pc && pc.count ? pc.overall : null, 'done') +
       bar('PDM Schedule Progress % (PDM Schedule store)', progress, 'cyan') +
@@ -9807,6 +10554,14 @@ function pdmRenderScheduleStatusCard(c) {
       '<div class="pa-figure"><span>PDM Schedule Progress</span><strong>' + pdmPctText(progress) + '%</strong></div>' +
       '<div class="pa-figure"><span>Planned Finish (PDM)</span><strong>' + esc(c.projectFinish || '\u2014') + '</strong></div>' +
       '<div class="pa-figure"><span>Critical Activities</span><strong>' + c.criticalCount + ' of ' + c.items.length + '</strong></div>' +
+      '<div class="pa-figure"><span>Schedule Slippage % (engine)</span><strong class="' +
+        (plan && plan.slippage < 0 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+        (plan && plan.slippage > 0 ? '+' : '') +
+        (plan ? pdmPctText(plan.slippage) : '\u2014') + '%</strong></div>' +
+      '<div class="pa-figure"><span>Forecast Completion (engine)</span><strong>' +
+        esc(plan ? (plan.forecastFinish || '\u2014') : '\u2014') + '</strong></div>' +
+      '<div class="pa-figure"><span>Plan As-of Date</span><strong>' +
+        esc(plan ? plan.asOf : '\u2014') + '</strong></div>' +
       '<div class="pa-figure"><span>Source</span><strong>PdmSchedule* (independent)</strong></div>' +
     '</div>' +
     (canPdm ? '<div style="margin-top:12px"><button type="button" class="btn small" id="paOpenPdm" ' +
@@ -9844,6 +10599,15 @@ function pdmRenderPaStatusCard(c) {
       '<div class="pa-figure"><span>Revised Contract Amount</span><strong>' +
         paMoneyText(pc.totalAmount) + '</strong></div>' +
       '<div class="pa-figure"><span>Contract Items</span><strong>' + pc.count + '</strong></div>' +
+      (function () {
+        const plan = (typeof pdmPlan === 'function') ? pdmPlan() : null;
+        if (!plan || !plan.ok) return '';
+        return '<div class="pa-figure"><span>Schedule Slippage % (engine)</span><strong class="' +
+          (plan.slippage < 0 ? 'pa-slip-neg' : 'pa-slip-pos') + '">' +
+          (plan.slippage > 0 ? '+' : '') + pdmPctText(plan.slippage) + '%</strong></div>' +
+          '<div class="pa-figure"><span>Forecast Completion (engine)</span><strong>' +
+          esc(plan.forecastFinish || '\u2014') + '</strong></div>';
+      })() +
       '<div class="pa-figure"><span>Schedule Status</span><strong class="' +
         (c && c.delayDays > 0 ? 'pa-slip-neg' : 'pa-slip-pos') + '"' +
         (c && c.pending ? ' style="color:#fcd34d"' : '') + '>' +
@@ -10073,7 +10837,7 @@ function pdmRenderBoqTable() {
   }
   if (!items.length) {
     body.innerHTML = '<tr><td colspan="12">' +
-      pdmEmpty('&#128196;', 'No contract items for this contract yet — add them in Project Accomplishment.') +
+      pdmEmpty(ico('file'), 'No contract items for this contract yet — add them in Project Accomplishment.') +
       '</td></tr>';
     return;
   }
@@ -10185,7 +10949,7 @@ function pdmPaintSuspIssues(id, susp) {
   const warns = (susp && susp.warnings) || [];
   if (!errs.length && !warns.length) { box.innerHTML = ''; return; }
   box.innerHTML = '<div class="' + (errs.length ? 'pdm-error' : 'pdm-warn') + '" role="alert">' +
-    '<strong>&#9888;&#65039;</strong><span>' +
+    '<strong>' + ico('alert') + '</strong><span>' +
     esc(errs.concat(warns).join('   \u2022   ')) + '</span></div>';
 }
 
@@ -10283,7 +11047,7 @@ function pdmRenderSuspensionOrders() {
             '<td>' + esc(l.Detail || '') + '</td>' +
           '</tr>').join('')
       : '<tr><td colspan="5">' +
-        pdmEmpty('&#128221;', 'No suspension or resumption has been recorded yet.') +
+        pdmEmpty(ico('edit'), 'No suspension or resumption has been recorded yet.') +
         '</td></tr>';
   }
 
@@ -10291,7 +11055,7 @@ function pdmRenderSuspensionOrders() {
   if (!body) return;
   if (!PDM.suspensions.length) {
     body.innerHTML = '<tr><td colspan="9">' +
-      pdmEmpty('&#9208;', 'No suspension orders yet - create the first one with the form above.') +
+      pdmEmpty(ico('pause'), 'No suspension orders yet - create the first one with the form above.') +
       '</td></tr>';
     return;
   }
@@ -10468,6 +11232,15 @@ function pdmWire() {
 
   on('pdmDashRefresh', 'click', pdmRefresh);
   on('pdmGanttRefresh', 'click', () => pdmRenderAll());
+  on('pdmGanttBaseline', 'click', pdmRecordApprovedBaseline);
+  on('pdmPlanAsOf', 'change', ev => {
+    PDM.planAsOf = (ev && ev.target && ev.target.value) || '';
+    pdmRenderAll();
+  });
+  on('pdmPlanGran', 'change', ev => {
+    PDM.planGran = (ev && ev.target && ev.target.value) || 'weekly';
+    pdmRenderPlan(PDM.calc || pdmCalculate());
+  });
   on('pdmGanttZoom', 'change', () => pdmRenderAll());
 
   // --- suspension orders: create / edit / resume / delete ------------------
@@ -10617,6 +11390,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+// Debug / probe hook: the two module stores are const bindings, so they never
+// appear on window. Headless validation probes (and the browser console) reach
+// the LIVE objects through these properties - assigning to them mutates the
+// same stores the app renders from.
+window.PA = PA;
+window.PDM = PDM;
 
 </script>
 
